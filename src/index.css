@@ -1,0 +1,893 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    margin: 0;
+    font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+        "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family:
+        source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+@layer base {
+    :root {
+        --background: 0 0% 100%;
+        --foreground: 0 0% 3.9%;
+        --card: 0 0% 100%;
+        --card-foreground: 0 0% 3.9%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 0 0% 3.9%;
+        --primary: 0 0% 9%;
+        --primary-foreground: 0 0% 98%;
+        --secondary: 0 0% 96.1%;
+        --secondary-foreground: 0 0% 9%;
+        --muted: 0 0% 96.1%;
+        --muted-foreground: 0 0% 45.1%;
+        --accent: 0 0% 96.1%;
+        --accent-foreground: 0 0% 9%;
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 0 0% 89.8%;
+        --input: 0 0% 89.8%;
+        --ring: 0 0% 3.9%;
+        --chart-1: 12 76% 61%;
+        --chart-2: 173 58% 39%;
+        --chart-3: 197 37% 24%;
+        --chart-4: 43 74% 66%;
+        --chart-5: 27 87% 67%;
+        --radius: 0.5rem;
+        --z-stack-header: 20;
+        --z-stack-floating: 40;
+        --z-stack-overlay: 60;
+        --z-stack-modal: 90;
+        --z-stack-top: 9999;
+    }
+    .dark {
+        --background: 0 0% 3.9%;
+        --foreground: 0 0% 98%;
+        --card: 0 0% 3.9%;
+        --card-foreground: 0 0% 98%;
+        --popover: 0 0% 3.9%;
+        --popover-foreground: 0 0% 98%;
+        --primary: 0 0% 98%;
+        --primary-foreground: 0 0% 9%;
+        --secondary: 0 0% 14.9%;
+        --secondary-foreground: 0 0% 98%;
+        --muted: 0 0% 14.9%;
+        --muted-foreground: 0 0% 63.9%;
+        --accent: 0 0% 14.9%;
+        --accent-foreground: 0 0% 98%;
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 0 0% 14.9%;
+        --input: 0 0% 14.9%;
+        --ring: 0 0% 83.1%;
+        --chart-1: 220 70% 50%;
+        --chart-2: 160 60% 45%;
+        --chart-3: 30 80% 55%;
+        --chart-4: 280 65% 60%;
+        --chart-5: 340 75% 55%;
+    }
+}
+
+@layer utilities {
+    .z-stack-header {
+        z-index: var(--z-stack-header);
+    }
+    .z-stack-floating {
+        z-index: var(--z-stack-floating);
+    }
+    .z-stack-overlay {
+        z-index: var(--z-stack-overlay);
+    }
+    .z-stack-modal {
+        z-index: var(--z-stack-modal);
+    }
+    .z-stack-top {
+        z-index: var(--z-stack-top);
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground transition-colors duration-300;
+    }
+}
+
+/* ============================================
+   COMPLETE DARK THEME - Apple iOS Inspired
+   ============================================ */
+
+.dark {
+    color-scheme: dark;
+    --background: 0 0% 0%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 24.6 95% 53.1%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 24.6 95% 53.1%;
+}
+
+/* Body and Root Elements */
+.dark body {
+    background-color: #000000;
+    color: #f5f5f5;
+}
+
+.dark #root {
+    background-color: #000000;
+}
+
+/* ============================================
+   BACKGROUNDS
+   ============================================ */
+
+.dark .bg-white {
+    background-color: #1c1c1e !important;
+}
+
+.dark .bg-gray-50 {
+    background-color: #2c2c2e !important;
+}
+
+.dark .bg-gray-100 {
+    background-color: #3a3a3c !important;
+}
+
+.dark .bg-gray-200 {
+    background-color: #48484a !important;
+}
+
+.dark .bg-gray-300 {
+    background-color: #636366 !important;
+}
+
+/* Gradient Backgrounds */
+.dark .bg-gradient-to-br,
+.dark .bg-gradient-to-r,
+.dark .bg-gradient-to-l,
+.dark .bg-gradient-to-t,
+.dark .bg-gradient-to-b {
+    background-image: linear-gradient(to bottom right, #1c1c1e, #000000) !important;
+}
+
+.dark section.bg-gradient-to-br {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1c1c1e 50%, #0a0a0a 100%) !important;
+}
+
+.dark .from-gray-50 {
+    --tw-gradient-from: #2c2c2e !important;
+}
+
+.dark .to-white {
+    --tw-gradient-to: #1c1c1e !important;
+}
+
+.dark .from-orange-50,
+.dark .from-blue-50,
+.dark .from-purple-50,
+.dark .from-pink-50 {
+    --tw-gradient-from: #1c1c1e !important;
+}
+
+.dark .to-orange-50,
+.dark .to-blue-50,
+.dark .to-purple-50,
+.dark .to-pink-50 {
+    --tw-gradient-to: #0a0a0a !important;
+}
+
+.dark .via-white,
+.dark .via-orange-50,
+.dark .via-purple-50,
+.dark .via-blue-50 {
+    --tw-gradient-via: #1c1c1e !important;
+}
+
+/* ============================================
+   TEXT COLORS
+   ============================================ */
+
+.dark .text-gray-900,
+.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+    color: #ffffff !important;
+}
+
+.dark .text-gray-800 {
+    color: #f5f5f5 !important;
+}
+
+.dark .text-gray-700 {
+    color: #e5e5e7 !important;
+}
+
+.dark .text-gray-600 {
+    color: #c7c7cc !important;
+}
+
+.dark .text-gray-500 {
+    color: #aeaeb2 !important;
+}
+
+.dark .text-gray-400 {
+    color: #8e8e93 !important;
+}
+
+.dark .text-gray-300 {
+    color: #636366 !important;
+}
+
+/* ============================================
+   BORDERS
+   ============================================ */
+
+.dark .border-gray-100,
+.dark .border-gray-200 {
+    border-color: #3a3a3c !important;
+}
+
+.dark .border-gray-300 {
+    border-color: #48484a !important;
+}
+
+.dark .border-gray-400 {
+    border-color: #636366 !important;
+}
+
+/* ============================================
+   CARDS AND SURFACES
+   ============================================ */
+
+.dark [class*="Card"],
+.dark .card {
+    background-color: #1c1c1e !important;
+    border-color: #3a3a3c !important;
+}
+
+.dark .shadow-sm {
+    box-shadow: 0 1px 2px 0 rgba(255, 255, 255, 0.05) !important;
+}
+
+.dark .shadow,
+.dark .shadow-md {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5),
+                0 2px 4px -2px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark .shadow-lg {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5),
+                0 4px 6px -4px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark .shadow-xl {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5),
+                0 8px 10px -6px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark .shadow-2xl {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* ============================================
+   BUTTONS AND INTERACTIVE ELEMENTS
+   ============================================ */
+
+.dark button,
+.dark .btn {
+    color: #ffffff;
+}
+
+.dark .hover\:bg-gray-100:hover,
+.dark .hover\:bg-gray-50:hover {
+    background-color: #2c2c2e !important;
+}
+
+.dark .hover\:bg-orange-50:hover {
+    background-color: rgba(251, 146, 60, 0.1) !important;
+}
+
+/* ============================================
+   SPECIFIC COMPONENT FIXES
+   ============================================ */
+
+/* Hero Section */
+.dark .animate-in {
+    color: #ffffff;
+}
+
+/* Stats/Target Cards */
+.dark [class*="rounded-xl"].group {
+    background-color: #1c1c1e !important;
+    border-color: #3a3a3c !important;
+}
+
+.dark [class*="rounded-xl"].group:hover {
+    border-color: #fb923c !important;
+}
+
+/* Badges */
+.dark .bg-orange-100 {
+    background-color: rgba(251, 146, 60, 0.15) !important;
+}
+
+.dark .bg-blue-100 {
+    background-color: rgba(59, 130, 246, 0.15) !important;
+}
+
+.dark .bg-green-100 {
+    background-color: rgba(34, 197, 94, 0.15) !important;
+}
+
+.dark .bg-purple-100 {
+    background-color: rgba(168, 85, 247, 0.15) !important;
+}
+
+.dark .bg-pink-100 {
+    background-color: rgba(236, 72, 153, 0.15) !important;
+}
+
+.dark .bg-indigo-100 {
+    background-color: rgba(99, 102, 241, 0.15) !important;
+}
+
+.dark .text-orange-700,
+.dark .text-orange-800 {
+    color: #fb923c !important;
+}
+
+.dark .text-blue-700,
+.dark .text-blue-800 {
+    color: #60a5fa !important;
+}
+
+.dark .text-green-700,
+.dark .text-green-800 {
+    color: #4ade80 !important;
+}
+
+.dark .text-purple-700,
+.dark .text-purple-800 {
+    color: #c084fc !important;
+}
+
+.dark .text-pink-700,
+.dark .text-pink-800 {
+    color: #f472b6 !important;
+}
+
+.dark .text-indigo-700,
+.dark .text-indigo-800 {
+    color: #818cf8 !important;
+}
+
+/* Input Fields */
+.dark input,
+.dark textarea,
+.dark select {
+    background-color: #2c2c2e !important;
+    color: #ffffff !important;
+    border-color: #3a3a3c !important;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+    color: #8e8e93 !important;
+}
+
+.dark input:focus,
+.dark textarea:focus,
+.dark select:focus {
+    border-color: #fb923c !important;
+    background-color: #1c1c1e !important;
+}
+
+/* Modal/Dialog Overlays */
+.dark .bg-black\/90,
+.dark .bg-black\/80,
+.dark .bg-black\/70 {
+    background-color: rgba(0, 0, 0, 0.95) !important;
+}
+
+/* ============================================
+   PRESERVE BRAND COLORS
+   ============================================ */
+
+/* Orange brand colors */
+.dark .text-orange-600,
+.dark .bg-orange-600,
+.dark .border-orange-600 {
+    filter: brightness(1.1);
+}
+
+/* Keep gradient text vibrant */
+.dark .bg-gradient-to-r.from-orange-600,
+.dark .bg-gradient-to-r.from-purple-600,
+.dark .bg-gradient-to-r.from-blue-600 {
+    filter: brightness(1.2);
+}
+
+/* ============================================
+   SPECIFIC SECTIONS
+   ============================================ */
+
+/* Navigation */
+.dark nav {
+    background-color: rgba(28, 28, 30, 0.9) !important;
+    backdrop-filter: blur(10px);
+}
+
+/* Footer */
+.dark footer {
+    background-color: #000000 !important;
+    border-top-color: #3a3a3c !important;
+}
+
+/* Image overlays */
+.dark .absolute.inset-0.bg-gradient-to-t {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent) !important;
+}
+
+/* ============================================
+   SCROLLBAR STYLING
+   ============================================ */
+
+.dark ::-webkit-scrollbar {
+    width: 12px;
+}
+
+.dark ::-webkit-scrollbar-track {
+    background: #1c1c1e;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background: #3a3a3c;
+    border-radius: 6px;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+    background: #48484a;
+}
+
+/* ============================================
+   ANIMATIONS & TRANSITIONS
+   ============================================ */
+
+.dark * {
+    transition-property: background-color, border-color, color;
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;
+}
+
+/* Font size accessibility */
+.text-small {
+    font-size: 87.5%;
+}
+
+.text-large {
+    font-size: 112.5%;
+}
+
+/* High contrast mode */
+.high-contrast {
+    --contrast-multiplier: 1.5;
+}
+
+.high-contrast * {
+    border-width: 2px !important;
+}
+
+.high-contrast a,
+.high-contrast button {
+    text-decoration: underline !important;
+}
+
+/* Focus visible styles for accessibility */
+*:focus-visible {
+    outline: 3px solid #f97316;
+    outline-offset: 2px;
+}
+
+.dark *:focus-visible {
+    outline-color: #fb923c;
+}
+
+/* Screen reader only class */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+.sr-only:not(.focus\:not-sr-only:focus) {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Custom Animations */
+@keyframes draw {
+    from {
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 1000;
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes draw-map {
+    from {
+        stroke-dasharray: 500;
+        stroke-dashoffset: 500;
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes pulse-circuit {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+@keyframes wave {
+    0%, 100% {
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dashoffset: 10;
+    }
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: -20;
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes pulse-slow {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
+
+@keyframes gradient-shift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+.animate-draw {
+    animation: draw 3s ease-in-out forwards;
+}
+
+.animate-draw-map {
+    stroke-dasharray: 500;
+    animation: draw-map 2s ease-in-out forwards;
+}
+
+.animate-pulse-circuit {
+    animation: pulse-circuit 2s ease-in-out infinite;
+}
+
+.animate-wave {
+    animation: wave 3s ease-in-out infinite;
+}
+
+.animate-dash {
+    animation: dash 20s linear infinite;
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+    animation: pulse-slow 3s ease-in-out infinite;
+}
+
+.animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient-shift 8s ease infinite;
+}
+
+/* Scroll-triggered animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Grid pattern background */
+.bg-grid-pattern {
+    background-image: 
+        linear-gradient(to right, rgba(255, 111, 0, 0.1) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 111, 0, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+/* Logo scroller animations */
+@keyframes loop-scroll {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes loop-scroll-reverse {
+    from {
+        transform: translateX(-50%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+.animate-loop-scroll {
+    animation: loop-scroll 40s linear infinite;
+}
+
+.animate-loop-scroll-reverse {
+    animation: loop-scroll-reverse 40s linear infinite;
+}
+
+/* Scrolling partners animation */
+@keyframes scroll-left {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-scroll-left {
+    animation: scroll-left 30s linear infinite;
+}
+
+@keyframes scroll-right {
+    from {
+        transform: translateX(-50%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+.animate-scroll-right {
+    animation: scroll-right 30s linear infinite;
+}
+
+.pause-animation:hover {
+    animation-play-state: paused;
+}
+
+/* Zoom in animation for intro */
+@keyframes zoom-in {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.animate-zoom-in {
+    animation: zoom-in 3s ease-out forwards;
+}
+
+/* Mascot animations */
+@keyframes bounce-slow {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.animate-bounce-slow {
+    animation: bounce-slow 3s ease-in-out infinite;
+}
+
+@keyframes spin-slow {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.animate-spin-slow {
+    animation: spin-slow 3s linear infinite;
+}
+
+/* Animation Delays */
+.delay-200 {
+    animation-delay: 200ms;
+}
+
+.delay-300 {
+    animation-delay: 300ms;
+}
+
+.delay-500 {
+    animation-delay: 500ms;
+}
+
+/* Header Glow Animation */
+@keyframes saffron-glow {
+    0%, 100% {
+        box-shadow: 0 -2px 15px rgba(249, 115, 22, 0.6), 0 -4px 25px rgba(249, 115, 22, 0.4);
+    }
+    50% {
+        box-shadow: 0 -2px 20px rgba(249, 115, 22, 0.8), 0 -4px 35px rgba(249, 115, 22, 0.6);
+    }
+}
+
+.header-glow {
+    animation: saffron-glow 2s ease-in-out infinite;
+}
+
+/* Shimmer Effect for Loading Bar */
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.animate-shimmer {
+    animation: shimmer 2s infinite;
+}
+
+/* Float Animation */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Smooth Section Transitions */
+.section-transition {
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Fade-in on scroll animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-section {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Smooth scroll behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+@layer base {
+    [data-debug-wrapper="true"] {
+        display: contents !important;
+    }
+
+    [data-debug-wrapper="true"] > * {
+        margin-left: inherit;
+        margin-right: inherit;
+        margin-top: inherit;
+        margin-bottom: inherit;
+        padding-left: inherit;
+        padding-right: inherit;
+        padding-top: inherit;
+        padding-bottom: inherit;
+        column-gap: inherit;
+        row-gap: inherit;
+        gap: inherit;
+        border-left-width: inherit;
+        border-right-width: inherit;
+        border-top-width: inherit;
+        border-bottom-width: inherit;
+        border-left-style: inherit;
+        border-right-style: inherit;
+        border-top-style: inherit;
+        border-bottom-style: inherit;
+        border-left-color: inherit;
+        border-right-color: inherit;
+        border-top-color: inherit;
+        border-bottom-color: inherit;
+    }
+}
