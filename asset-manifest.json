@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/odisha-ai_website/static/css/main.eb2406b0.css",
+    "main.js": "/odisha-ai_website/static/js/main.a9ceeb65.js",
+    "index.html": "/odisha-ai_website/index.html",
+    "main.eb2406b0.css.map": "/odisha-ai_website/static/css/main.eb2406b0.css.map",
+    "main.a9ceeb65.js.map": "/odisha-ai_website/static/js/main.a9ceeb65.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.eb2406b0.css",
+    "static/js/main.a9ceeb65.js"
+  ]
+}
