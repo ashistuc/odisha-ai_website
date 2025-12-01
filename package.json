@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
-  "homepage": "https://abhisheksahay1619.github.io/odisha-ai_website",
+  "homepage": "https://ashistuc.github.io/odisha-ai_website",
   "private": true,
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
@@ -56,15 +56,14 @@
     "vaul": "^1.1.2",
     "zod": "^3.24.4"
   },
-  
- "scripts": {
-  "start": "craco start",
-  "build": "craco build",
-  "test": "craco test",
-  "eject": "react-scripts eject",
-  "predeploy": "npm run build",
-  "deploy": "gh-pages -d build"
-},
+  "scripts": {
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
