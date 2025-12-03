@@ -25,6 +25,17 @@ const InnovationCentres = ({ centres }) => {
     'SO-AI': 'AI_Innovation/SO-AI logo.png'
   };
 
+  // Random overlay colors for each card
+  const overlayColors = [
+    'rgba(239, 68, 68, 0.4)',   // red
+    'rgba(59, 130, 246, 0.4)',  // blue
+    'rgba(34, 197, 94, 0.4)',   // green
+    'rgba(168, 85, 247, 0.4)',  // purple
+    'rgba(251, 146, 60, 0.4)',  // orange
+    'rgba(14, 165, 233, 0.4)',  // cyan
+    'rgba(236, 72, 153, 0.4)'   // pink
+  ];
+
   const resolveBackgroundUrl = (path) => {
     if (!path) return '';
 
@@ -62,24 +73,31 @@ const InnovationCentres = ({ centres }) => {
               const imagePath = imageBackgrounds[centre.acronym];
               const resolvedImagePath = imagePath ? resolveBackgroundUrl(imagePath) : '';
               const hasImage = Boolean(resolvedImagePath);
+              const overlayColor = overlayColors[index % overlayColors.length];
+              
               const backgroundStyle = hasImage
                 ? {
-                    backgroundImage: `linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url(${resolvedImagePath})`,
-                    backgroundSize: 'cover',
+                    backgroundImage: `url(${resolvedImagePath})`,
+                    backgroundSize: 'contain',
                     backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
                   }
                 : undefined;
 
               return (
                 <div
                   className={`h-48 relative overflow-hidden ${
-                    hasImage ? 'bg-slate-900' : `bg-gradient-to-br ${gradientClass}`
+                    hasImage ? 'bg-slate-100 dark:bg-slate-800' : `bg-gradient-to-br ${gradientClass}`
                   }`}
                   style={backgroundStyle}
                 >
-                  <div className="absolute inset-0 bg-black/35 group-hover:bg-black/25 transition-all duration-500"></div>
+                  {/* Random color overlay */}
+                  <div 
+                    className="absolute inset-0 transition-opacity duration-500 group-hover:opacity-70"
+                    style={{ backgroundColor: overlayColor }}
+                  ></div>
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-white text-center p-6">
+                    <div className="text-white text-center p-6 z-10">
                       <div className="text-4xl font-bold mb-2 drop-shadow-[0_3px_6px_rgba(0,0,0,0.45)]">
                         {centre.acronym}
                       </div>

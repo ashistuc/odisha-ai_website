@@ -31,26 +31,65 @@ const Header = () => {
   return (
     <header className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-stack-header shadow-sm transition-colors duration-300 border-t-4 border-t-orange-500 header-glow">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+        <div className="flex justify-between items-center py-3 lg:py-4">
           {/* Logo Section with Government Logos */}
-          <div className="flex items-center space-x-4">
-            <button onClick={() => scrollToSection('main-content')} className="flex items-center space-x-3 group">
+          <div className="flex items-center space-x-6">
+            <button
+              onClick={() => scrollToSection('main-content')}
+              className="flex items-center space-x-3 group"
+            >
               <img 
                 src="https://customer-assets.emergentagent.com/job_empower-odisha-ai/artifacts/6m3a87vb_WhatsApp%20Image%202025-11-22%20at%2000.46.35.jpeg" 
                 alt="Odisha AI Mission Logo"
                 className="w-12 h-12 object-contain group-hover:scale-110 transition-transform duration-300"
               />
-              <div>
-                <h1 className="text-xl font-bold text-gray-900 dark:text-white">Odisha AI Mission</h1>
-                <p className="text-xs text-gray-600 dark:text-gray-400">Government of Odisha</p>
+              <div className="leading-tight">
+                <h1 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">
+                  Odisha AI Mission
+                </h1>
+                <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+                  Government of Odisha
+                </p>
               </div>
             </button>
             
             {/* Partner Logos */}
-            <div className="hidden xl:flex items-center space-x-2 pl-4 border-l-2 border-gray-200 dark:border-gray-700">
-              <div className="text-xs text-gray-500 dark:text-gray-400 px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded">E&IT Dept</div>
-              <div className="text-xs text-gray-500 dark:text-gray-400 px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded">OCAC</div>
-              <div className="text-xs text-gray-500 dark:text-gray-400 px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded">IndiaAI</div>
+            <div className="hidden xl:flex items-center space-x-6 pl-6 ml-4 border-l border-gray-200 dark:border-gray-700">
+              {/* Odisha Govt Logo */}
+              <div className="flex flex-col items-center space-y-1">
+                <img
+                  src="/odisha-ai_website/logo/odisha-govt.svg"
+                  alt="Government of Odisha"
+                  className="h-10 w-auto object-contain"
+                />
+                <span className="text-[10px] uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                  Govt. of Odisha
+                </span>
+              </div>
+
+              {/* E&IT Dept / OCAC Logo */}
+              <div className="flex flex-col items-center space-y-1">
+                <img
+                  src="/odisha-ai_website/logo/ocac-logo.png"
+                  alt="E&IT Department, OCAC"
+                  className="h-10 w-auto object-contain"
+                />
+                <span className="text-[10px] uppercase tracking-wide text-gray-500 dark:text-gray-400 text-center">
+                  E&IT Dept / OCAC
+                </span>
+              </div>
+
+              {/* IndiaAI Logo */}
+              <div className="flex flex-col items-center space-y-1">
+                <img
+                  src="/odisha-ai_website/logo/India_AI_logo.png"
+                  alt="IndiaAI"
+                  className="h-10 w-auto object-contain"
+                />
+                <span className="text-[10px] uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                  IndiaAI
+                </span>
+              </div>
             </div>
           </div>
 
