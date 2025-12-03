@@ -15,6 +15,24 @@ const InnovationCentres = ({ centres }) => {
     'from-teal-400 to-green-500'
   ];
 
+  const imageBackgrounds = {
+    'IIT-BBS': 'AI_Innovation/IIT_Bhubaneswar_Logo.png',
+    'IIIT-BBS': 'AI_Innovation/IIIT-logo.jpg',
+    'NIT-RKL': 'AI_Innovation/NIT -rourkela.png',
+    'OCAC-AIH': 'AI_Innovation/ocac-logo.png',
+    VSSUT: 'AI_Innovation/Logo_vssut.svg.png',
+    BPUT: 'AI_Innovation/bput-logo.png',
+    'SO-AI': 'AI_Innovation/SO-AI logo.png'
+  };
+
+  const resolveBackgroundUrl = (path) => {
+    if (!path) return '';
+
+    const base = process.env.PUBLIC_URL || '';
+    const normalized = path.startsWith('/') ? path : `/${path}`;
+    return encodeURI(`${base}${normalized}`);
+  };
+
   return (
     <div>
       {/* Section Header */}
@@ -38,18 +56,42 @@ const InnovationCentres = ({ centres }) => {
             key={centre.id}
             className="group hover:shadow-2xl transition-all duration-500 border-2 border-gray-100 hover:border-orange-200 overflow-hidden"
           >
-            {/* Image Placeholder with Gradient */}
-            <div className={`h-48 bg-gradient-to-br ${gradients[index % gradients.length]} relative overflow-hidden`}>
-              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-500"></div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-white text-center p-6">
-                  <div className="text-4xl font-bold mb-2 drop-shadow-lg">{centre.acronym}</div>
-                  <div className="text-sm font-medium drop-shadow-md">{centre.location}</div>
+            {/* Visual Header */}
+            {(() => {
+              const gradientClass = gradients[index % gradients.length];
+              const imagePath = imageBackgrounds[centre.acronym];
+              const resolvedImagePath = imagePath ? resolveBackgroundUrl(imagePath) : '';
+              const hasImage = Boolean(resolvedImagePath);
+              const backgroundStyle = hasImage
+                ? {
+                    backgroundImage: `linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url(${resolvedImagePath})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  }
+                : undefined;
+
+              return (
+                <div
+                  className={`h-48 relative overflow-hidden ${
+                    hasImage ? 'bg-slate-900' : `bg-gradient-to-br ${gradientClass}`
+                  }`}
+                  style={backgroundStyle}
+                >
+                  <div className="absolute inset-0 bg-black/35 group-hover:bg-black/25 transition-all duration-500"></div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="text-white text-center p-6">
+                      <div className="text-4xl font-bold mb-2 drop-shadow-[0_3px_6px_rgba(0,0,0,0.45)]">
+                        {centre.acronym}
+                      </div>
+                      <div className="text-sm font-medium drop-shadow-[0_3px_6px_rgba(0,0,0,0.35)]">
+                        {centre.location}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-white/20 transform rotate-45 translate-x-10 -translate-y-10"></div>
                 </div>
-              </div>
-              {/* Decorative corner */}
-              <div className="absolute top-0 right-0 w-20 h-20 bg-white/20 transform rotate-45 translate-x-10 -translate-y-10"></div>
-            </div>
+              );
+            })()}
 
             <CardHeader>
               <div className="flex items-start justify-between mb-2">

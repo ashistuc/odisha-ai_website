@@ -1673,6 +1673,27 @@
   resolved "https://registry.npmjs.org/@leichtgewicht/ip-codec/-/ip-codec-2.0.5.tgz"
   integrity sha512-Vo+PSpZG2/fmgmiNzYK9qWRh8h/CHrwD0mo1h1DzL4yzHNSfWYujGTYsWGreD000gcgmZ7K4Ys6Tx9TxtsKdDw==
 
+"@napi-rs/canvas-win32-x64-msvc@0.1.83":
+  version "0.1.83"
+  resolved "https://registry.npmjs.org/@napi-rs/canvas-win32-x64-msvc/-/canvas-win32-x64-msvc-0.1.83.tgz"
+  integrity sha512-K1TtjbScfRNYhq8dengLLufXGbtEtWdUXPV505uLFPovyGHzDUGXLFP/zUJzj6xWXwgUjHNLgEPIt7mye0zr6Q==
+
+"@napi-rs/canvas@^0.1.81":
+  version "0.1.83"
+  resolved "https://registry.npmjs.org/@napi-rs/canvas/-/canvas-0.1.83.tgz"
+  integrity sha512-f9GVB9VNc9vn/nroc9epXRNkVpvNPZh69+qzLJIm9DfruxFqX0/jsXG46OGWAJgkO4mN0HvFHjRROMXKVmPszg==
+  optionalDependencies:
+    "@napi-rs/canvas-android-arm64" "0.1.83"
+    "@napi-rs/canvas-darwin-arm64" "0.1.83"
+    "@napi-rs/canvas-darwin-x64" "0.1.83"
+    "@napi-rs/canvas-linux-arm-gnueabihf" "0.1.83"
+    "@napi-rs/canvas-linux-arm64-gnu" "0.1.83"
+    "@napi-rs/canvas-linux-arm64-musl" "0.1.83"
+    "@napi-rs/canvas-linux-riscv64-gnu" "0.1.83"
+    "@napi-rs/canvas-linux-x64-gnu" "0.1.83"
+    "@napi-rs/canvas-linux-x64-musl" "0.1.83"
+    "@napi-rs/canvas-win32-x64-msvc" "0.1.83"
+
 "@nicolo-ribaudo/eslint-scope-5-internals@5.1.1-v1":
   version "5.1.1-v1"
   resolved "https://registry.npmjs.org/@nicolo-ribaudo/eslint-scope-5-internals/-/eslint-scope-5-internals-5.1.1-v1.tgz"
@@ -7110,6 +7131,11 @@ jiti@*, jiti@^1.21.7, jiti@>=1.21.0:
   resolved "https://registry.npmjs.org/jiti/-/jiti-1.21.7.tgz"
   integrity sha512-/imKNG4EbWNrVjoNC/1H5/9GFy+tqjGBHCaSsN+P2RnPqjsLmv6UD3Ej+Kj8nBWaRAwyk7kK5ZUc+OEatnTR3A==
 
+jquery@1.12.0:
+  version "1.12.0"
+  resolved "https://registry.npmjs.org/jquery/-/jquery-1.12.0.tgz"
+  integrity sha512-fnEEC7ylFkIKfOGvEky9Odcth1VYo61dfkQLxlDHjtNoIY9ssxybvTSG5xLDbutWdKn+grAu4EUJfhSUZODktQ==
+
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz"
@@ -7987,6 +8013,13 @@ path-type@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/path-type/-/path-type-4.0.0.tgz"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
+
+pdfjs-dist@^5.4.449:
+  version "5.4.449"
+  resolved "https://registry.npmjs.org/pdfjs-dist/-/pdfjs-dist-5.4.449.tgz"
+  integrity sha512-CegnUaT0QwAyQMS+7o2POr4wWUNNe8VaKKlcuoRHeYo98cVnqPpwOXNSx6Trl6szH02JrRcsPgletV6GmF3LtQ==
+  optionalDependencies:
+    "@napi-rs/canvas" "^0.1.81"
 
 performance-now@^2.1.0:
   version "2.1.0"
@@ -10169,6 +10202,13 @@ tsutils@^3.21.0:
   integrity sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==
   dependencies:
     tslib "^1.8.1"
+
+turn.js@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.npmjs.org/turn.js/-/turn.js-1.0.5.tgz"
+  integrity sha512-36XRk5f6pm02AaPDEomJwfd7huc5U3SHv/ROBiL+rHBRuh1hkdxuuEwHiMW934lOJAsR+ML6XksPNUgRk1lPTQ==
+  dependencies:
+    jquery "1.12.0"
 
 type-check@^0.4.0, type-check@~0.4.0:
   version "0.4.0"

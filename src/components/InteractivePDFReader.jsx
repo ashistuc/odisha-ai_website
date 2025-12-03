@@ -1,379 +1,333 @@
-import React, { useState, useEffect } from 'react';
-import { X, ChevronLeft, ChevronRight, BookOpen, List, Volume2 } from 'lucide-react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { X, ChevronLeft, ChevronRight, Loader2, AlertCircle, Download } from 'lucide-react';
 import { Button } from './ui/button';
-import { Card, CardContent } from './ui/card';
-import { Badge } from './ui/badge';
+import $ from 'jquery';
+import 'turn.js';
+import * as pdfjsLib from 'pdfjs-dist/build/pdf';
+
+if (typeof window !== 'undefined') {
+  window.jQuery = window.jQuery || $;
+  window.$ = window.$ || $;
+}
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
+  'pdfjs-dist/build/pdf.worker.min.mjs',
+  import.meta.url
+).toString();
 
 const InteractivePDFReader = ({ isOpen, onClose, pdfUrl }) => {
-  const [currentPage, setCurrentPage] = useState(0);
-  const [showIndex, setShowIndex] = useState(true);
+  const [pages, setPages] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [bookSize, setBookSize] = useState({ width: 900, height: 600 });
 
-  // Complete AI Policy 2025 book content
-  const bookSections = [
-    {
-      title: 'Cover Page',
-      page: 0,
-      important: false,
-      content: {
-        title: 'Odisha Artificial Intelligence Policy 2025',
-        subtitle: 'Building an Inclusive and Innovation-Driven AI Ecosystem',
-        department: 'Electronics & IT Department, Government of Odisha'
-      }
-    },
-    {
-      title: 'Vision & Mission',
-      page: 1,
-      important: true,
-      content: {
-        section: 'Vision & Mission',
-        highlights: [
-          'Transform Odisha into a leading AI-driven state',
-          'Foster inclusive and responsible AI adoption',
-          'Create 50,000+ AI jobs by 2036',
-          'Establish world-class AI research infrastructure'
-        ]
-      }
-    },
-    {
-      title: 'Policy Objectives',
-      page: 2,
-      important: true,
-      content: {
-        section: 'Key Policy Objectives',
-        objectives: [
-          'AI-enabled Governance: Deploy AI across government services',
-          'Skill Development: Train 2 lakh citizens in AI by 2036',
-          'Innovation Ecosystem: Support 500+ AI startups',
-          'Research & Development: Establish 7 AI Innovation Centres',
-          'Infrastructure: Develop robust data and compute infrastructure',
-          'Ethical AI: Ensure responsible and transparent AI adoption'
-        ]
-      }
-    },
-    {
-      title: 'Focus Areas',
-      page: 3,
-      important: true,
-      content: {
-        section: 'Strategic Focus Areas',
-        areas: [
-          'Healthcare: AI diagnostics, telemedicine, predictive health',
-          'Agriculture: Precision farming, crop advisory, market intelligence',
-          'Education: Personalized learning, AI tutors, skill-based curriculum',
-          'Governance: Smart cities, citizen services, e-governance',
-          'Disaster Management: Early warning systems, risk assessment'
-        ]
-      }
-    },
-    {
-      title: 'Implementation Framework',
-      page: 4,
-      important: false,
-      content: {
-        section: 'Implementation Strategy',
-        phases: [
-          'Phase 1 (2025-2027): Foundation & Pilot Projects',
-          'Phase 2 (2027-2030): Scale-up & Expansion',
-          'Phase 3 (2030-2036): Maturity & Leadership'
-        ]
-      }
-    },
-    {
-      title: 'Budget Allocation',
-      page: 5,
-      important: true,
-      content: {
-        section: 'Financial Framework',
-        budget: '₹1,000 Crore allocated for 2025-2030',
-        breakdown: [
-          'Infrastructure: 30%',
-          'Skill Development: 25%',
-          'Startup Ecosystem: 20%',
-          'R&D and Innovation: 15%',
-          'Administration: 10%'
-        ]
-      }
+  const bookRef = useRef(null);
+  const turnInstanceRef = useRef(null);
+  const bookSizeRef = useRef(bookSize);
+
+  const resolvedPdfUrl = useMemo(() => {
+    if (!pdfUrl) return '';
+    if (/^(https?:)?\/\//i.test(pdfUrl) || pdfUrl.startsWith('data:')) {
+      return pdfUrl;
     }
-  ];
 
-  const playPageFlipSound = () => {
-    // Create a simple page flip sound effect
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    const oscillator = audioContext.createOscillator();
-    const gainNode = audioContext.createGain();
-    
-    oscillator.connect(gainNode);
-    gainNode.connect(audioContext.destination);
-    
-    oscillator.frequency.value = 800;
-    gainNode.gain.value = 0.1;
-    
-    oscillator.start();
-    
-    setTimeout(() => {
-      oscillator.frequency.value = 400;
-    }, 50);
-    
-    setTimeout(() => {
-      oscillator.stop();
-    }, 150);
-  };
-
-  const nextPage = () => {
-    if (currentPage < bookSections.length - 1) {
-      playPageFlipSound();
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const prevPage = () => {
-    if (currentPage > 0) {
-      playPageFlipSound();
-      setCurrentPage(currentPage - 1);
-    }
-  };
-
-  const goToPage = (page) => {
-    playPageFlipSound();
-    setCurrentPage(page);
-    setShowIndex(false);
-  };
+    const base = process.env.PUBLIC_URL || '';
+    const normalized = pdfUrl.startsWith('/') ? pdfUrl : `/${pdfUrl}`;
+    return `${base}${normalized}`;
+  }, [pdfUrl]);
 
   useEffect(() => {
-    const handleKeyPress = (e) => {
-      if (!isOpen) return;
-      if (e.key === 'ArrowRight') nextPage();
-      if (e.key === 'ArrowLeft') prevPage();
-      if (e.key === 'Escape') onClose();
+    if (!isOpen || !resolvedPdfUrl) return undefined;
+
+    let isCancelled = false;
+
+    const loadPdf = async () => {
+      setLoading(true);
+      setError('');
+      setPages([]);
+      setCurrentPage(1);
+
+      try {
+        const response = await fetch(resolvedPdfUrl, { cache: 'reload' });
+
+        if (!response.ok) {
+          throw new Error(`Request failed with status ${response.status}`);
+        }
+
+        const pdfData = await response.arrayBuffer();
+        const pdf = await pdfjsLib.getDocument({ data: pdfData }).promise;
+        const loadedPages = [];
+
+        for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber += 1) {
+          if (isCancelled) return;
+
+          const page = await pdf.getPage(pageNumber);
+          const viewport = page.getViewport({ scale: 1.4 });
+          const canvas = document.createElement('canvas');
+          const context = canvas.getContext('2d');
+
+          canvas.width = viewport.width;
+          canvas.height = viewport.height;
+
+          await page.render({ canvasContext: context, viewport }).promise;
+
+          loadedPages.push({
+            id: pageNumber,
+            src: canvas.toDataURL('image/png'),
+            width: viewport.width,
+            height: viewport.height,
+          });
+        }
+
+        if (!isCancelled) {
+          setPages(loadedPages);
+        }
+      } catch (err) {
+        if (!isCancelled) {
+          console.error('Failed to load PDF', err);
+          setError(err?.message || 'Unable to load the AI Policy. Please try again later.');
+        }
+      } finally {
+        if (!isCancelled) {
+          setLoading(false);
+        }
+      }
     };
 
-    window.addEventListener('keydown', handleKeyPress);
-    return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [isOpen, currentPage]);
+    loadPdf();
 
-  if (!isOpen) return null;
+    return () => {
+      isCancelled = true;
+    };
+  }, [isOpen, resolvedPdfUrl]);
 
-  const currentSection = bookSections[currentPage];
+  useEffect(() => {
+    if (pages.length === 0) return;
+
+    const [firstPage] = pages;
+
+    const updateSize = () => {
+      const ratio = firstPage.height / firstPage.width || 1.414;
+      const maxWidth = Math.min(window.innerWidth - 96, 1200);
+      const maxHeight = Math.min(window.innerHeight - 200, 900);
+
+      let width = maxWidth;
+      let height = (width / 2) * ratio;
+
+      if (height > maxHeight) {
+        height = maxHeight;
+        width = Math.min(maxWidth, (height * 2) / ratio);
+      }
+
+      setBookSize({
+        width: Math.round(width),
+        height: Math.round(height),
+      });
+    };
+
+    updateSize();
+    window.addEventListener('resize', updateSize);
+
+    return () => {
+      window.removeEventListener('resize', updateSize);
+    };
+  }, [pages]);
+
+  useEffect(() => {
+    bookSizeRef.current = bookSize;
+
+    if (turnInstanceRef.current && bookSize.width && bookSize.height) {
+      turnInstanceRef.current.turn('size', bookSize.width, bookSize.height);
+    }
+  }, [bookSize]);
+
+  useEffect(() => {
+    if (!isOpen || pages.length === 0 || !bookRef.current) return;
+
+    const $book = $(bookRef.current);
+
+    if ($book.data('turn')) {
+      $book.turn('destroy');
+    }
+
+    const handleTurn = (_event, page) => {
+      setCurrentPage(page);
+    };
+
+    const timer = setTimeout(() => {
+      const { width, height } = bookSizeRef.current;
+
+      $book.turn({
+        width,
+        height,
+        autoCenter: true,
+        display: 'double',
+        gradients: true,
+        elevation: 50,
+      });
+
+      $book.on('turned', handleTurn);
+      turnInstanceRef.current = $book;
+      setCurrentPage($book.turn('page'));
+    }, 0);
+
+    return () => {
+      clearTimeout(timer);
+      $book.off('turned', handleTurn);
+      if ($book.data('turn')) {
+        $book.turn('destroy');
+      }
+      turnInstanceRef.current = null;
+    };
+  }, [isOpen, pages]);
+
+  const bookPages = useMemo(() => {
+    if (pages.length === 0) return [];
+    return pages.length % 2 === 0 ? pages : [...pages, { id: 'blank', blank: true }];
+  }, [pages]);
+
+  const totalPages = bookPages.length;
+  const displayPage = totalPages > 0 ? Math.min(currentPage, totalPages) : 0;
+
+  const handlePrev = () => {
+    if (turnInstanceRef.current) {
+      turnInstanceRef.current.turn('previous');
+    }
+  };
+
+  const handleNext = () => {
+    if (turnInstanceRef.current) {
+      turnInstanceRef.current.turn('next');
+    }
+  };
+
+  const handleClose = () => {
+    if (turnInstanceRef.current) {
+      const $instance = turnInstanceRef.current;
+      if ($instance.data('turn')) {
+        $instance.turn('destroy');
+      }
+      turnInstanceRef.current = null;
+    }
+    setPages([]);
+    setError('');
+    setCurrentPage(1);
+    onClose?.();
+  };
+
+  if (!isOpen) {
+    return null;
+  }
 
   return (
-    <div className="fixed inset-0 bg-black/80 z-stack-modal flex items-center justify-center p-4 animate-in fade-in duration-300">
-      <div className="w-full max-w-6xl h-[90vh] bg-gradient-to-br from-orange-50 to-blue-50 rounded-2xl shadow-2xl flex overflow-hidden">
-        {/* Index Sidebar */}
-        <div className={`${showIndex ? 'w-80' : 'w-0'} transition-all duration-300 bg-white border-r-2 border-orange-200 overflow-y-auto`}>
-          {showIndex && (
-            <div className="p-6">
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="text-xl font-bold text-gray-900 flex items-center">
-                  <List className="w-5 h-5 mr-2 text-orange-600" />
-                  Index
-                </h3>
-              </div>
-              <div className="space-y-2">
-                {bookSections.map((section, index) => (
-                  <button
-                    key={index}
-                    onClick={() => goToPage(index)}
-                    className={`w-full text-left p-3 rounded-lg transition-all duration-200 ${
-                      currentPage === index
-                        ? 'bg-orange-100 border-2 border-orange-400'
-                        : 'bg-gray-50 hover:bg-orange-50 border-2 border-transparent'
-                    }`}
+    <div
+      className="fixed inset-0 z-[1000] bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-6"
+      onClick={handleClose}
+    >
+      <div
+        className="relative w-full max-w-6xl h-[90vh] bg-slate-900/70 border border-white/10 rounded-3xl shadow-2xl overflow-hidden flex flex-col"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-slate-900/80 text-white">
+          <div>
+            <p className="text-xs uppercase tracking-[0.3em] text-orange-300">Official Document</p>
+            <h2 className="text-xl font-semibold">Odisha AI Policy 2025</h2>
+          </div>
+          <div className="flex items-center space-x-3">
+            <span className="text-sm text-white/70">
+              {totalPages > 0 ? `Page ${displayPage} / ${totalPages}` : 'Preparing document…'}
+            </span>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-white hover:text-orange-300 hover:bg-white/10"
+              onClick={handleClose}
+            >
+              <X className="w-5 h-5" />
+            </Button>
+          </div>
+        </div>
+
+        <div className="relative flex-1 flex items-center justify-center bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+          {loading && (
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-white space-y-4">
+              <Loader2 className="w-10 h-10 animate-spin" />
+              <p className="text-sm tracking-wide uppercase text-white/70">Loading AI Policy…</p>
+            </div>
+          )}
+
+          {!loading && error && (
+            <div className="flex flex-col items-center justify-center text-red-200 space-y-3">
+              <AlertCircle className="w-10 h-10" />
+              <p className="text-base font-medium">{error}</p>
+            </div>
+          )}
+
+          {!loading && !error && pages.length > 0 && (
+            <div
+              className="shadow-2xl rounded-2xl bg-white overflow-hidden"
+              style={{ width: `${bookSize.width}px`, height: `${bookSize.height}px` }}
+            >
+              <div ref={bookRef} className="w-full h-full">
+                {bookPages.map((page) => (
+                  <div
+                    key={page.id}
+                    className="page w-full h-full bg-white flex items-center justify-center"
                   >
-                    <div className="flex items-start justify-between">
-                      <div className="flex-1">
-                        <p className="font-semibold text-sm text-gray-900">{section.title}</p>
-                        <p className="text-xs text-gray-500">Page {index + 1}</p>
-                      </div>
-                      {section.important && (
-                        <Badge className="bg-yellow-100 text-yellow-800 text-xs ml-2">
-                          Important
-                        </Badge>
-                      )}
-                    </div>
-                  </button>
+                    {page.blank ? (
+                      <div className="text-gray-300 text-sm">End of document</div>
+                    ) : (
+                      <img
+                        src={page.src}
+                        alt={`Policy page ${page.id}`}
+                        className="w-full h-full object-contain"
+                      />
+                    )}
+                  </div>
                 ))}
               </div>
             </div>
           )}
         </div>
 
-        {/* Book Content */}
-        <div className="flex-1 flex flex-col">
-          {/* Header */}
-          <div className="bg-white border-b-2 border-orange-200 p-4 flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setShowIndex(!showIndex)}
-                className="border-orange-300"
-              >
-                <List className="w-4 h-4 mr-2" />
-                {showIndex ? 'Hide' : 'Show'} Index
-              </Button>
-              <div className="flex items-center space-x-2">
-                <BookOpen className="w-5 h-5 text-orange-600" />
-                <span className="font-semibold text-gray-900">AI Policy 2025</span>
-              </div>
-            </div>
+        <div className="px-6 py-4 border-t border-white/10 bg-slate-900/85 flex flex-wrap md:flex-nowrap items-center justify-between gap-3">
+          <div className="flex w-full md:w-auto items-center justify-center md:justify-start gap-3">
             <Button
-              variant="ghost"
-              size="icon"
-              onClick={onClose}
-              className="hover:bg-orange-100"
+              onClick={(event) => {
+                event.stopPropagation();
+                handlePrev();
+              }}
+              disabled={displayPage <= 1}
+              className="bg-orange-600 hover:bg-orange-500 disabled:bg-slate-700 disabled:text-slate-300 shadow-md w-full md:w-auto"
             >
-              <X className="w-5 h-5" />
+              <ChevronLeft className="w-4 h-4 mr-2" />
+              Previous
+            </Button>
+            <Button
+              onClick={(event) => {
+                event.stopPropagation();
+                handleNext();
+              }}
+              disabled={displayPage >= totalPages}
+              className="bg-orange-600 hover:bg-orange-500 disabled:bg-slate-700 disabled:text-slate-300 shadow-md w-full md:w-auto"
+            >
+              Next
+              <ChevronRight className="w-4 h-4 ml-2" />
             </Button>
           </div>
-
-          {/* Page Content */}
-          <div className="flex-1 overflow-y-auto p-8 bg-white">
-            <div className="max-w-4xl mx-auto">
-              {/* Page with flip animation */}
-              <div className="animate-in fade-in slide-in-from-right-4 duration-500">
-                {currentPage === 0 && (
-                  <div className="text-center py-20">
-                    <div className="mb-8">
-                      <div className="w-32 h-32 bg-gradient-to-br from-orange-500 to-blue-500 rounded-full mx-auto mb-6 flex items-center justify-center">
-                        <BookOpen className="w-16 h-16 text-white" />
-                      </div>
-                    </div>
-                    <h1 className="text-5xl font-bold text-gray-900 mb-4">
-                      {currentSection.content.title}
-                    </h1>
-                    <p className="text-2xl text-gray-700 mb-8">
-                      {currentSection.content.subtitle}
-                    </p>
-                    <Badge className="bg-orange-600 text-white px-6 py-2 text-base">
-                      {currentSection.content.department}
-                    </Badge>
-                  </div>
-                )}
-
-                {currentSection.content.highlights && (
-                  <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-6 border-b-4 border-orange-500 pb-3">
-                      {currentSection.content.section}
-                    </h2>
-                    <div className="space-y-4">
-                      {currentSection.content.highlights.map((highlight, idx) => (
-                        <div key={idx} className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg">
-                          <p className="text-lg text-gray-800 font-medium">{highlight}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {currentSection.content.objectives && (
-                  <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-6 border-b-4 border-orange-500 pb-3">
-                      {currentSection.content.section}
-                    </h2>
-                    <div className="space-y-4">
-                      {currentSection.content.objectives.map((obj, idx) => (
-                        <div key={idx} className="flex items-start space-x-3 bg-blue-50 p-4 rounded-lg">
-                          <div className="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0 font-bold">
-                            {idx + 1}
-                          </div>
-                          <p className="text-gray-800 font-medium pt-1">{obj}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {currentSection.content.areas && (
-                  <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-6 border-b-4 border-orange-500 pb-3">
-                      {currentSection.content.section}
-                    </h2>
-                    <div className="grid grid-cols-1 gap-4">
-                      {currentSection.content.areas.map((area, idx) => (
-                        <Card key={idx} className="border-2 border-orange-200 hover:border-orange-400 transition-colors">
-                          <CardContent className="p-4">
-                            <p className="text-gray-800 font-medium">{area}</p>
-                          </CardContent>
-                        </Card>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {currentSection.content.phases && (
-                  <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-6 border-b-4 border-orange-500 pb-3">
-                      {currentSection.content.section}
-                    </h2>
-                    <div className="space-y-4">
-                      {currentSection.content.phases.map((phase, idx) => (
-                        <div key={idx} className="bg-gradient-to-r from-orange-50 to-blue-50 p-5 rounded-lg border-2 border-gray-200">
-                          <p className="text-lg text-gray-800 font-semibold">{phase}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {currentSection.content.budget && (
-                  <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-6 border-b-4 border-orange-500 pb-3">
-                      {currentSection.content.section}
-                    </h2>
-                    <div className="bg-green-50 border-2 border-green-300 rounded-xl p-6 mb-6">
-                      <p className="text-2xl font-bold text-green-800">{currentSection.content.budget}</p>
-                    </div>
-                    <div className="space-y-3">
-                      {currentSection.content.breakdown.map((item, idx) => (
-                        <div key={idx} className="flex items-center justify-between bg-gray-50 p-4 rounded-lg">
-                          <span className="text-gray-800 font-medium">{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {currentSection.important && (
-                  <div className="mt-6 flex items-center space-x-2 text-yellow-700">
-                    <Volume2 className="w-5 h-5" />
-                    <span className="text-sm font-semibold">Important Section - Auto-highlighted</span>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* Footer Navigation */}
-          <div className="bg-white border-t-2 border-orange-200 p-4">
-            <div className="flex items-center justify-between max-w-4xl mx-auto">
-              <Button
-                onClick={prevPage}
-                disabled={currentPage === 0}
-                className="bg-orange-600 hover:bg-orange-700 disabled:bg-gray-300 disabled:cursor-not-allowed"
-              >
-                <ChevronLeft className="w-5 h-5 mr-1" />
-                Previous
-              </Button>
-
-              <div className="text-center">
-                <p className="text-sm text-gray-600">
-                  Page {currentPage + 1} of {bookSections.length}
-                </p>
-                <p className="text-xs text-gray-500 mt-1">
-                  Use arrow keys or click to navigate
-                </p>
-              </div>
-
-              <Button
-                onClick={nextPage}
-                disabled={currentPage === bookSections.length - 1}
-                className="bg-orange-600 hover:bg-orange-700 disabled:bg-gray-300 disabled:cursor-not-allowed"
-              >
-                Next
-                <ChevronRight className="w-5 h-5 ml-1" />
-              </Button>
-            </div>
-          </div>
+          <Button
+            className="w-full md:w-auto bg-white/10 hover:bg-white/20 text-white border border-white/20 shadow-md"
+            onClick={(event) => {
+              event.stopPropagation();
+              if (resolvedPdfUrl) {
+                window.open(resolvedPdfUrl, '_blank', 'noopener');
+              }
+            }}
+          >
+            <Download className="w-4 h-4 mr-2" />
+            Download PDF
+          </Button>
         </div>
       </div>
     </div>

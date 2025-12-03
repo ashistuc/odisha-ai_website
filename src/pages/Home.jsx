@@ -49,7 +49,10 @@ const Home = () => {
       <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300 scroll-smooth">
       {/* Hero Carousel Section */}
       <section id="main-content" className="relative section-transition">
-        <EnhancedHeroCarousel slides={heroSlides} />
+        <EnhancedHeroCarousel
+          slides={heroSlides}
+          onReadPolicy={() => setIsPDFReaderOpen(true)}
+        />
       </section>
 
       {/* Policy Targets Carousel */}
@@ -244,7 +247,7 @@ const Home = () => {
     <InteractivePDFReader 
       isOpen={isPDFReaderOpen}
       onClose={() => setIsPDFReaderOpen(false)}
-      pdfUrl="/path/to/ai-policy-2025.pdf"
+      pdfUrl="/Odisha%20AI%20Policy-2025.pdf"
     />
 
     {/* Floating Social Widgets */}

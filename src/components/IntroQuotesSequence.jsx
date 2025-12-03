@@ -52,7 +52,7 @@ const IntroQuotesSequence = ({ onComplete }) => {
             <div className="w-80 h-80 rounded-full overflow-hidden border-8 border-orange-500 shadow-2xl">
               <div className="w-full h-full bg-gradient-to-br from-orange-200 to-blue-200 flex items-center justify-center">
                 <img
-                  src="/odisha-ai_website/images/Pm_Modi.png"
+                  src="/odisha-ai_website/images/PM.jpg"
                   alt="Prime Minister Narendra Modi"
                   className="w-full h-full object-cover"
                 />
@@ -91,7 +91,7 @@ const IntroQuotesSequence = ({ onComplete }) => {
             <div className="w-80 h-80 rounded-full overflow-hidden border-8 border-blue-500 shadow-2xl">
               <div className="w-full h-full bg-gradient-to-br from-blue-200 to-orange-200 flex items-center justify-center">
                 <img
-                  src="/odisha-ai_website/images/Mohan_Charan_Majhi.jpg"
+                  src="/odisha-ai_website/images/CM.webp"
                   alt="Hon'ble Chief Minister"
                   className="w-full h-full object-cover"
                 />

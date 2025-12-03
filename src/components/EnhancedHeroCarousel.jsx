@@ -2,9 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from './ui/button';
 
-const EnhancedHeroCarousel = ({ slides }) => {
+const EnhancedHeroCarousel = ({ slides, onReadPolicy }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+
+  const handleReadPolicy = () => {
+    if (onReadPolicy) {
+      onReadPolicy();
+    } else {
+      document.getElementById('policy-section')?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   useEffect(() => {
     if (!isAutoPlaying) return;
@@ -112,7 +120,7 @@ const EnhancedHeroCarousel = ({ slides }) => {
                 size="lg"
                 variant="outline"
                 className="border-2 border-white text-white hover:bg-white/10 text-lg px-8 py-6 transform transition-all hover:scale-105"
-                onClick={() => document.getElementById('policy-section')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={handleReadPolicy}
               >
                 Read AI Policy 2025
               </Button>
