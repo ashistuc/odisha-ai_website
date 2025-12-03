@@ -10,15 +10,15 @@ if (typeof window !== 'undefined') {
   window.$ = window.$ || $;
 }
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.min.mjs',
-  import.meta.url
-).toString();
+// Use CDN-hosted PDF.js worker to avoid dynamic import issues in production
+// (especially on GitHub Pages / subpath deployments).
+pdfjsLib.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.mjs`;
 
 const InteractivePDFReader = ({ isOpen, onClose, pdfUrl }) => {
   const [pages, setPages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [loadProgress, setLoadProgress] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [bookSize, setBookSize] = useState({ width: 900, height: 600 });
 
@@ -47,9 +47,11 @@ const InteractivePDFReader = ({ isOpen, onClose, pdfUrl }) => {
       setError('');
       setPages([]);
       setCurrentPage(1);
+      setLoadProgress(0);
 
       try {
-        const response = await fetch(resolvedPdfUrl, { cache: 'reload' });
+        // Use default browser caching to avoid re-downloading the PDF on every open
+        const response = await fetch(resolvedPdfUrl);
 
         if (!response.ok) {
           throw new Error(`Request failed with status ${response.status}`);
@@ -57,13 +59,15 @@ const InteractivePDFReader = ({ isOpen, onClose, pdfUrl }) => {
 
         const pdfData = await response.arrayBuffer();
         const pdf = await pdfjsLib.getDocument({ data: pdfData }).promise;
+        const totalPagesToLoad = pdf.numPages || 0;
         const loadedPages = [];
 
         for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber += 1) {
           if (isCancelled) return;
 
           const page = await pdf.getPage(pageNumber);
-          const viewport = page.getViewport({ scale: 1.4 });
+          // Slightly lower render scale to speed up rendering while keeping good readability
+          const viewport = page.getViewport({ scale: 1.0 });
           const canvas = document.createElement('canvas');
           const context = canvas.getContext('2d');
 
@@ -78,6 +82,11 @@ const InteractivePDFReader = ({ isOpen, onClose, pdfUrl }) => {
             width: viewport.width,
             height: viewport.height,
           });
+
+          if (!isCancelled && totalPagesToLoad > 0) {
+            const progress = Math.round((loadedPages.length / totalPagesToLoad) * 100);
+            setLoadProgress(progress);
+          }
         }
 
         if (!isCancelled) {
@@ -213,6 +222,7 @@ const InteractivePDFReader = ({ isOpen, onClose, pdfUrl }) => {
     setPages([]);
     setError('');
     setCurrentPage(1);
+    setLoadProgress(0);
     onClose?.();
   };
 
@@ -251,9 +261,17 @@ const InteractivePDFReader = ({ isOpen, onClose, pdfUrl }) => {
 
         <div className="relative flex-1 flex items-center justify-center bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
           {loading && (
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-white space-y-4">
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-white space-y-4 px-6">
               <Loader2 className="w-10 h-10 animate-spin" />
-              <p className="text-sm tracking-wide uppercase text-white/70">Loading AI Policy…</p>
+              <p className="text-sm tracking-wide uppercase text-white/70">
+                Loading AI Policy… {loadProgress > 0 ? `${loadProgress}%` : ''}
+              </p>
+              <div className="w-full max-w-md h-2 rounded-full bg-white/10 overflow-hidden">
+                <div
+                  className="h-full bg-orange-400 transition-all duration-300"
+                  style={{ width: `${Math.min(loadProgress, 100)}%` }}
+                />
+              </div>
             </div>
           )}
 

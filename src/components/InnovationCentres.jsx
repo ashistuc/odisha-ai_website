@@ -91,21 +91,11 @@ const InnovationCentres = ({ centres }) => {
                   }`}
                   style={backgroundStyle}
                 >
-                  {/* Random color overlay */}
+                  {/* Random color overlay (no text heading or state name) */}
                   <div 
                     className="absolute inset-0 transition-opacity duration-500 group-hover:opacity-70"
                     style={{ backgroundColor: overlayColor }}
                   ></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-white text-center p-6 z-10">
-                      <div className="text-4xl font-bold mb-2 drop-shadow-[0_3px_6px_rgba(0,0,0,0.45)]">
-                        {centre.acronym}
-                      </div>
-                      <div className="text-sm font-medium drop-shadow-[0_3px_6px_rgba(0,0,0,0.35)]">
-                        {centre.location}
-                      </div>
-                    </div>
-                  </div>
                   <div className="absolute top-0 right-0 w-20 h-20 bg-white/20 transform rotate-45 translate-x-10 -translate-y-10"></div>
                 </div>
               );

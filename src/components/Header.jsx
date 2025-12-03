@@ -62,9 +62,7 @@ const Header = () => {
                   alt="Government of Odisha"
                   className="h-10 w-auto object-contain"
                 />
-                <span className="text-[10px] uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                  Govt. of Odisha
-                </span>
+              
               </div>
 
               {/* E&IT Dept / OCAC Logo */}
@@ -74,9 +72,7 @@ const Header = () => {
                   alt="E&IT Department, OCAC"
                   className="h-10 w-auto object-contain"
                 />
-                <span className="text-[10px] uppercase tracking-wide text-gray-500 dark:text-gray-400 text-center">
-                  E&IT Dept / OCAC
-                </span>
+              
               </div>
 
               {/* IndiaAI Logo */}
@@ -86,9 +82,7 @@ const Header = () => {
                   alt="IndiaAI"
                   className="h-10 w-auto object-contain"
                 />
-                <span className="text-[10px] uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                  IndiaAI
-                </span>
+             
               </div>
             </div>
           </div>
