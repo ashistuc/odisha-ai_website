@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { ExternalLink, Code, Database, Globe, Sparkles, Languages, BookOpen, Github, Cpu, Zap } from 'lucide-react';
+import React, { useMemo, useState } from 'react';
+import { ExternalLink, Database, Globe, Sparkles, Languages, Github, Cpu, Zap } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
@@ -17,17 +17,12 @@ const AIToolsSection = ({ tools }) => {
     { id: 'government', name: 'Government', icon: Globe }
   ];
 
-  const iconMap = {
-    Languages,
-    Database,
-    Globe,
-    Sparkles,
-    BookOpen,
-    Github,
-    Code,
-    Cpu,
-    Zap
-  };
+  const categoryIconMap = useMemo(() => (
+    categories.reduce((acc, category) => {
+      acc[category.id] = category.icon;
+      return acc;
+    }, {})
+  ), [categories]);
 
   const filteredTools = activeCategory === 'all' 
     ? tools 
@@ -60,7 +55,8 @@ const AIToolsSection = ({ tools }) => {
       {/* Tools Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredTools.map((tool, index) => {
-          const Icon = iconMap[tool.icon] || Sparkles;
+          const hasImage = Boolean(tool.image);
+          const CategoryIcon = categoryIconMap[tool.category] || Sparkles;
           return (
             <Card
               key={tool.id}
@@ -70,13 +66,24 @@ const AIToolsSection = ({ tools }) => {
               <div className={`h-2 bg-gradient-to-r ${tool.gradient || 'from-orange-400 to-red-500'}`}></div>
 
               <CardHeader>
-                <div className="flex items-start justify-between mb-3">
-                  <div className={`w-14 h-14 bg-gradient-to-br ${tool.gradient || 'from-orange-100 to-orange-200'} rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                    <Icon className="w-7 h-7 text-orange-700" />
-                  </div>
+                <div className="relative mb-4">
+                  {hasImage ? (
+                    <div className="relative h-32 w-full rounded-xl border border-gray-100 bg-white overflow-hidden shadow-sm group-hover:shadow-lg transition-all duration-300">
+                      <img
+                        src={tool.image}
+                        alt={`${tool.name} logo`}
+                        loading="lazy"
+                        className="h-full w-full object-contain p-4"
+                      />
+                    </div>
+                  ) : (
+                    <div className={`w-16 h-16 bg-gradient-to-br ${tool.gradient || 'from-orange-100 to-orange-200'} rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                      <CategoryIcon className="w-8 h-8 text-orange-700" />
+                    </div>
+                  )}
                   {tool.featured && (
-                    <Badge className="bg-yellow-100 text-yellow-700">
-                      <Sparkles className="w-3 h-3 mr-1" />
+                    <Badge className={`flex items-center gap-1 bg-yellow-100 text-yellow-700 shadow-sm ${hasImage ? 'absolute top-3 right-3' : 'absolute -top-2 -right-2'}`}>
+                      <Sparkles className="w-3 h-3" />
                       Featured
                     </Badge>
                   )}

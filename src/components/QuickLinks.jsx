@@ -41,10 +41,25 @@ const QuickLinks = ({ links }) => {
                   <Card className="h-full hover:shadow-xl transition-all duration-300 border-2 border-gray-100 hover:border-orange-200 cursor-pointer">
                     <CardHeader className="pb-3">
                       <div className="flex items-start justify-between">
-                        <div className={`w-12 h-12 bg-gradient-to-br ${categoryColors[category] || 'from-gray-100 to-gray-200'} rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                          <Icon className="w-6 h-6 text-white" />
+                        <div className="w-full flex items-center justify-between gap-3">
+                          <div className="flex-1">
+                            <div className="w-full h-24 rounded-xl border border-gray-100 bg-white overflow-hidden shadow-sm group-hover:shadow-md transition-all duration-300 flex items-center justify-center">
+                              {link.image ? (
+                                <img
+                                  src={link.image}
+                                  alt={`${link.name} logo`}
+                                  loading="lazy"
+                                  className="h-full w-full object-contain p-4"
+                                />
+                              ) : (
+                                <div className={`w-12 h-12 bg-gradient-to-br ${categoryColors[category] || 'from-gray-100 to-gray-200'} rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                                  <Icon className="w-6 h-6 text-white" />
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                          <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-orange-600 transition-colors flex-shrink-0" />
                         </div>
-                        <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-orange-600 transition-colors" />
                       </div>
                       <CardTitle className="text-base font-semibold text-gray-900 group-hover:text-orange-600 transition-colors mt-3">
                         {link.name}

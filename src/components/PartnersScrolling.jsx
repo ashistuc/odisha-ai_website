@@ -29,44 +29,68 @@ const PartnersScrolling = ({ partners }) => {
 
         {/* Scrolling content - Row 1 (Left to Right) */}
         <div className="flex animate-scroll-left hover:pause-animation mb-4">
-          {duplicatedPartners.map((partner, index) => (
-            <div
-              key={index}
-              className="flex-shrink-0 mx-6 w-40"
-            >
-              <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border-2 border-gray-100 hover:border-orange-200 group">
-                <div className="flex flex-col items-center">
-                  <div className="w-20 h-20 bg-gradient-to-br from-orange-50 to-blue-50 rounded-lg shadow-sm flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300">
-                    <span className="text-sm font-bold text-gray-700">{partner.logo}</span>
+          {duplicatedPartners.map((partner, index) => {
+            const hasImage = Boolean(partner.image);
+            return (
+              <div
+                key={index}
+                className="flex-shrink-0 mx-6 w-40"
+              >
+                <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border-2 border-gray-100 hover:border-orange-200 group">
+                  <div className="flex flex-col items-center">
+                    <div className="w-20 h-20 rounded-lg shadow-sm flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 bg-white border border-gray-100 overflow-hidden">
+                      {hasImage ? (
+                        <img
+                          src={partner.image}
+                          alt={`${partner.name} logo`}
+                          loading="lazy"
+                          className="w-full h-full object-contain p-2"
+                        />
+                      ) : (
+                        <span className="text-sm font-bold text-gray-700">{partner.logo}</span>
+                      )}
+                    </div>
+                    <p className="text-xs text-gray-600 font-semibold text-center">
+                      {partner.name}
+                    </p>
                   </div>
-                  <p className="text-xs text-gray-600 font-semibold text-center">
-                    {partner.name}
-                  </p>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Scrolling content - Row 2 (Right to Left) */}
         <div className="flex animate-scroll-right hover:pause-animation">
-          {duplicatedPartners.map((partner, index) => (
-            <div
-              key={`row2-${index}`}
-              className="flex-shrink-0 mx-6 w-40"
-            >
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border-2 border-gray-100 dark:border-gray-700 hover:border-orange-200 dark:hover:border-orange-600 group">
-                <div className="flex flex-col items-center">
-                  <div className="w-20 h-20 bg-gradient-to-br from-orange-50 to-blue-50 dark:from-gray-700 dark:to-gray-600 rounded-lg shadow-sm flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300">
-                    <span className="text-sm font-bold text-gray-700 dark:text-gray-300">{partner.logo}</span>
+          {duplicatedPartners.map((partner, index) => {
+            const hasImage = Boolean(partner.image);
+            return (
+              <div
+                key={`row2-${index}`}
+                className="flex-shrink-0 mx-6 w-40"
+              >
+                <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border-2 border-gray-100 dark:border-gray-700 hover:border-orange-200 dark:hover:border-orange-600 group">
+                  <div className="flex flex-col items-center">
+                    <div className="w-20 h-20 rounded-lg shadow-sm flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-700 overflow-hidden">
+                      {hasImage ? (
+                        <img
+                          src={partner.image}
+                          alt={`${partner.name} logo`}
+                          loading="lazy"
+                          className="w-full h-full object-contain p-2"
+                        />
+                      ) : (
+                        <span className="text-sm font-bold text-gray-700 dark:text-gray-300">{partner.logo}</span>
+                      )}
+                    </div>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 font-semibold text-center">
+                      {partner.name}
+                    </p>
                   </div>
-                  <p className="text-xs text-gray-600 dark:text-gray-400 font-semibold text-center">
-                    {partner.name}
-                  </p>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 

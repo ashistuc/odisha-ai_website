@@ -51,6 +51,7 @@ const SkillingOnAI = ({ programs }) => {
         {programs.map((program, index) => {
           const IconComponent = iconMap[program.icon] || GraduationCap;
           const gradientColor = colorMap[program.color] || colorMap.blue;
+          const hasImage = Boolean(program.image);
 
           return (
             <Card 
@@ -61,8 +62,21 @@ const SkillingOnAI = ({ programs }) => {
               <div className={`h-2 bg-gradient-to-r ${gradientColor}`}></div>
               
               <CardHeader className="pb-4">
-                <div className={`w-14 h-14 rounded-xl bg-gradient-to-r ${gradientColor} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                  <IconComponent className="w-7 h-7 text-white" />
+                <div className="mb-4">
+                  {hasImage ? (
+                    <div className="relative flex items-center justify-center h-36 rounded-xl bg-white border border-gray-100 shadow-sm group-hover:shadow-md transition-shadow duration-300">
+                      <img
+                        src={program.image}
+                        alt={`${program.name} logo`}
+                        loading="lazy"
+                        className="max-h-full max-w-full object-contain p-4"
+                      />
+                    </div>
+                  ) : (
+                    <div className={`w-14 h-14 rounded-xl bg-gradient-to-r ${gradientColor} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                      <IconComponent className="w-7 h-7 text-white" />
+                    </div>
+                  )}
                 </div>
                 
                 <CardTitle className="text-xl font-bold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors">

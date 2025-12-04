@@ -25,6 +25,7 @@ const FeaturedProjectsZoom = ({ projects }) => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {projects.map((project) => {
           const StatusIcon = statusIcons[project.status];
+          const hasImage = Boolean(project.image);
           return (
             <Card
               key={project.id}
@@ -44,8 +45,21 @@ const FeaturedProjectsZoom = ({ projects }) => {
 
               {/* Department Icon */}
               <div className="p-6 relative">
-                <div className="w-16 h-16 bg-gradient-to-br from-orange-100 to-orange-200 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
-                  <Building2 className="w-8 h-8 text-orange-600" />
+                <div className="mb-4">
+                  {hasImage ? (
+                    <div className="relative h-36 w-full rounded-2xl bg-white border border-gray-100 flex items-center justify-center overflow-hidden shadow-sm group-hover:shadow-md transition-all duration-500">
+                      <img
+                        src={project.image}
+                        alt={`${project.name} visual`}
+                        loading="lazy"
+                        className="h-full w-full object-contain p-4"
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-16 h-16 bg-gradient-to-br from-orange-100 to-orange-200 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
+                      <Building2 className="w-8 h-8 text-orange-600" />
+                    </div>
+                  )}
                 </div>
 
                 {/* Project Name */}
@@ -82,96 +96,106 @@ const FeaturedProjectsZoom = ({ projects }) => {
         <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-stack-modal flex items-center justify-center p-4 animate-in fade-in duration-300">
           <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] shadow-2xl animate-in zoom-in-95 duration-300 overflow-hidden flex flex-col">
             <div className="flex-1 overflow-y-auto">
-            {/* Header */}
-            <div className="sticky top-0 bg-gradient-to-r from-orange-500 to-orange-600 p-6 text-white z-10">
-              <div className="flex items-start justify-between">
-                <div className="flex-1">
-                  <div className="flex items-center space-x-3 mb-2">
-                    <Badge className="bg-white text-orange-600 border-0">
-                      {selectedProject.status}
-                    </Badge>
-                    <span className="text-sm opacity-90">{selectedProject.department}</span>
+              {/* Header */}
+              <div className="sticky top-0 bg-gradient-to-r from-orange-500 to-orange-600 p-6 text-white z-10">
+                <div className="flex items-start justify-between">
+                  <div className="flex-1">
+                    <div className="flex items-center space-x-3 mb-2">
+                      <Badge className="bg-white text-orange-600 border-0">
+                        {selectedProject.status}
+                      </Badge>
+                      <span className="text-sm opacity-90">{selectedProject.department}</span>
+                    </div>
+                    <h2 className="text-2xl font-bold">{selectedProject.name}</h2>
+                    {selectedProject.partner && (
+                      <p className="text-sm text-orange-100 mt-1">Implementation Partner: {selectedProject.partner}</p>
+                    )}
                   </div>
-                  <h2 className="text-2xl font-bold">{selectedProject.name}</h2>
-                  {selectedProject.partner && (
-                    <p className="text-sm text-orange-100 mt-1">Implementation Partner: {selectedProject.partner}</p>
-                  )}
+                  <button
+                    onClick={() => setSelectedProject(null)}
+                    className="w-10 h-10 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
+                  >
+                    <X className="w-6 h-6" />
+                  </button>
                 </div>
-                <button
-                  onClick={() => setSelectedProject(null)}
-                  className="w-10 h-10 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
-                >
-                  <X className="w-6 h-6" />
-                </button>
               </div>
-            </div>
 
-            {/* Content */}
+              {/* Content */}
               <div className="p-8 pb-32 space-y-6">
-              {/* Objective */}
-              <div>
-                <div className="flex items-center space-x-2 mb-3">
-                  <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
-                    <Target className="w-5 h-5 text-orange-600" />
+                {selectedProject.image && (
+                  <div className="relative h-56 w-full rounded-3xl border border-gray-200 overflow-hidden shadow-sm">
+                    <img
+                      src={selectedProject.image}
+                      alt={`${selectedProject.name} visual`}
+                      className="h-full w-full object-contain bg-white p-6"
+                    />
                   </div>
-                  <h3 className="font-bold text-lg text-gray-900">Project Objective</h3>
-                </div>
-                <p className="text-gray-700 leading-relaxed bg-gray-50 p-4 rounded-lg">
-                  {selectedProject.objective}
-                </p>
-              </div>
+                )}
 
-              {/* Problem Statement */}
-              <div className="bg-red-50 border-l-4 border-red-400 p-6 rounded-lg">
-                <div className="flex items-start space-x-3">
-                  <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Lightbulb className="w-5 h-5 text-red-600" />
+                {/* Objective */}
+                <div>
+                  <div className="flex items-center space-x-2 mb-3">
+                    <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
+                      <Target className="w-5 h-5 text-orange-600" />
+                    </div>
+                    <h3 className="font-bold text-lg text-gray-900">Project Objective</h3>
                   </div>
-                  <div className="flex-1">
-                    <h3 className="font-bold text-lg text-red-900 mb-3">Problem Statement</h3>
-                    <p className="text-red-800 leading-relaxed">
-                      {selectedProject.problem}
-                    </p>
-                  </div>
+                  <p className="text-gray-700 leading-relaxed">
+                    {selectedProject.objective}
+                  </p>
                 </div>
-              </div>
 
-              {/* How AI Solves */}
-              <div className="bg-blue-50 border-l-4 border-blue-400 p-6 rounded-lg">
-                <div className="flex items-start space-x-3">
-                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Zap className="w-5 h-5 text-blue-600" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="font-bold text-lg text-blue-900 mb-3">How AI Solves It</h3>
-                    <p className="text-blue-800 leading-relaxed">
-                      {selectedProject.solution}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Impact */}
-              <div className="bg-green-50 border-l-4 border-green-400 p-6 rounded-lg">
-                <div className="flex items-start space-x-3">
-                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <CheckCircle className="w-5 h-5 text-green-600" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="font-bold text-lg text-green-900 mb-3">Impact & Benefits</h3>
-                    <ul className="space-y-2">
-                      {selectedProject.impact.map((item, idx) => (
-                        <li key={idx} className="flex items-start text-green-800">
-                          <CheckCircle className="w-5 h-5 mr-2 flex-shrink-0 text-green-600 mt-0.5" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
+                {/* Problem Statement */}
+                <div className="bg-red-50 border-l-4 border-red-400 p-6 rounded-lg">
+                  <div className="flex items-start space-x-3">
+                    <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Lightbulb className="w-5 h-5 text-red-600" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-bold text-lg text-red-900 mb-3">Problem Statement</h3>
+                      <p className="text-red-800 leading-relaxed">
+                        {selectedProject.problem}
+                      </p>
                     </div>
                   </div>
+                </div>
+
+                {/* How AI Solves */}
+                <div className="bg-blue-50 border-l-4 border-blue-400 p-6 rounded-lg">
+                  <div className="flex items-start space-x-3">
+                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Zap className="w-5 h-5 text-blue-600" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-bold text-lg text-blue-900 mb-3">How AI Solves It</h3>
+                      <p className="text-blue-800 leading-relaxed">
+                        {selectedProject.solution}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Impact */}
+                <div className="bg-green-50 border-l-4 border-green-400 p-6 rounded-lg">
+                  <div className="flex items-start space-x-3">
+                    <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <CheckCircle className="w-5 h-5 text-green-600" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-bold text-lg text-green-900 mb-3">Impact & Benefits</h3>
+                      <ul className="space-y-2">
+                        {selectedProject.impact.map((item, idx) => (
+                          <li key={idx} className="flex items-start text-green-800">
+                            <CheckCircle className="w-5 h-5 mr-2 flex-shrink-0 text-green-600 mt-0.5" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
+            </div>
 
             {/* Actions Footer */}
             <div className="border-t border-gray-200 bg-white/90 backdrop-blur-sm p-6 flex flex-wrap gap-4 items-center justify-between sticky bottom-0 z-stack-overlay">

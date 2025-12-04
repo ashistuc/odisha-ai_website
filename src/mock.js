@@ -95,6 +95,7 @@ export const detailedProjects = [
     department: 'Finance Department',
     partner: 'OCAC',
     status: 'Live',
+    image: '/odisha-ai_website/Featured_AI_Projects_in_Odisha/spdp.png',
     details: 'Integrated platform for social welfare schemes',
     objective: 'To create a unified platform for efficient delivery of social protection schemes to beneficiaries across Odisha, ensuring transparency, reducing duplication, and streamlining fund disbursement.',
     problem: 'Multiple welfare schemes operated in silos with fragmented databases, leading to duplication of beneficiaries, delayed fund transfers, lack of real-time monitoring, and difficulties in identifying eligible recipients.',
@@ -114,6 +115,7 @@ export const detailedProjects = [
     department: 'Directorate of Economics and Statistics',
     partner: 'OCAC',
     status: 'Live',
+    image: '/odisha-ai_website/Featured_AI_Projects_in_Odisha/STATI.jpg',
     details: 'Intelligent assistant for statistical data queries',
     objective: 'To provide instant access to statistical data, reports, and economic indicators through an AI-powered conversational interface, making data democratically accessible to citizens, researchers, and policymakers.',
     problem: 'Citizens and researchers faced difficulties in navigating complex statistical portals, understanding data formats, and accessing relevant economic indicators. Manual query resolution was time-consuming and required expert knowledge.',
@@ -133,6 +135,7 @@ export const detailedProjects = [
     department: 'Mission Shakti Department',
     partner: 'OCAC',
     status: 'Live',
+    image: '/odisha-ai_website/Featured_AI_Projects_in_Odisha/Livelihood.jpg',
     details: 'AI assistant for SHG members and livelihood programs',
     objective: 'To empower Self Help Group (SHG) members with instant access to livelihood schemes, training opportunities, market linkages, and financial assistance through an AI-powered conversational platform.',
     problem: 'SHG members in rural areas lacked awareness about available schemes, struggled with complex application processes, and had limited access to information about market opportunities and skill development programs.',
@@ -152,6 +155,7 @@ export const detailedProjects = [
     department: 'Finance Department',
     partner: 'NIC Odisha',
     status: 'Concept',
+     image: '/odisha-ai_website/Featured_AI_Projects_in_Odisha/indian_logo.jpeg',
     details: 'Next-gen financial management with predictive analytics',
     objective: 'To modernize Odisha\u2019s financial management system with AI-driven budgeting, expenditure tracking, revenue forecasting, and anomaly detection for enhanced fiscal governance and transparency.',
     problem: 'Existing IFMS lacked predictive capabilities for budget planning, manual reconciliation processes were error-prone, delayed detection of financial irregularities, and limited real-time insights for decision-making.',
@@ -171,6 +175,7 @@ export const detailedProjects = [
     department: 'Electronics & IT Department',
     partner: 'OCAC',
     status: 'Live',
+    image: '/odisha-ai_website/Featured_AI_Projects_in_Odisha/AI_video_verification.png',
     details: 'Contactless life certificate submission using AI',
     objective: 'To enable senior citizens to submit life certificates for pension continuation from home using AI-powered video verification, eliminating the need for physical visits to offices.',
     problem: 'Elderly pensioners, especially those with mobility issues or living in remote areas, faced difficulties traveling to designated offices for annual life certificate submission, causing delays and hardship.',
@@ -190,6 +195,7 @@ export const detailedProjects = [
     department: 'Bhubaneswar Development Authority',
     partner: 'OCAC, ISRO',
     status: 'Live',
+    image: '/odisha-ai_website/Featured_AI_Projects_in_Odisha/BLUIS.png',
     details: 'Satellite imagery and AI for land monitoring',
     objective: 'To monitor and manage government land assets in Bhubaneswar using satellite imagery and AI, detecting unauthorized constructions, land use changes, and ensuring planned urban development - a first for any state in India.',
     problem: 'Manual land surveys were time-consuming, costly, and could not detect real-time encroachments. Lack of comprehensive land records led to disputes and unauthorized developments going unnoticed for months.',
@@ -209,6 +215,7 @@ export const detailedProjects = [
     department: 'Odisha Legislative Assembly',
     partner: 'OCAC',
     status: 'Live',
+    image: '/odisha-ai_website/Featured_AI_Projects_in_Odisha/Odisha_Assembly_Starred_Question_Drafting_System.png',
     details: 'AI assistant for legislative question drafting',
     objective: 'To assist MLAs and legislative staff in drafting starred questions efficiently by providing relevant background information, past questions on similar topics, and ensuring adherence to parliamentary procedures.',
     problem: 'Drafting starred questions required extensive research, checking past records, ensuring procedural compliance, and maintaining consistency - all of which were manual, time-intensive processes prone to errors.',
@@ -228,6 +235,7 @@ export const detailedProjects = [
     department: 'General Administration Department',
     partner: 'OCAC',
     status: 'Live',
+     image: '/odisha-ai_website/Featured_AI_Projects_in_Odisha/indian_logo.jpeg',
     details: 'AI-powered visitor authentication for government buildings',
     objective: 'To streamline and secure visitor entry to key government buildings (LokSeva Bhawan, Rajiv Bhawan, Kharavel Bhawan) using facial recognition technology, enhancing security while reducing wait times.',
     problem: 'Manual visitor registration was time-consuming, creating long queues and security bottlenecks. Lack of digital records made visitor tracking difficult, and verification processes were prone to human error.',
@@ -306,13 +314,41 @@ export const latestUpdates = [
 ];
 
 export const partners = [
-  { name: 'NASSCOM', logo: 'NASSCOM' },
-  { name: 'IndiaAI', logo: 'IndiaAI' },
-  { name: 'Intel', logo: 'Intel' },
-  { name: 'IIT Bhubaneswar', logo: 'IIT-BBS' },
-  { name: 'IIIT Bhubaneswar', logo: 'IIIT-BBS' },
-  { name: 'Startup Odisha', logo: 'Startup Odisha' },
-  { name: 'Wadhwani Foundation', logo: 'Wadhwani' }
+  {
+    name: 'NASSCOM',
+    logo: 'NASSCOM',
+    image: '/odisha-ai_website/Our_Partners_in_Innovation/nasscom-logo.jpg'
+  },
+  {
+    name: 'IndiaAI',
+    logo: 'IndiaAI',
+    image: '/odisha-ai_website/Our_Partners_in_Innovation/india_AI.png'
+  },
+  {
+    name: 'Intel',
+    logo: 'Intel',
+    image: '/odisha-ai_website/Our_Partners_in_Innovation/intel.png'
+  },
+  {
+    name: 'IIT Bhubaneswar',
+    logo: 'IIT-BBS',
+    image: '/odisha-ai_website/Our_Partners_in_Innovation/IIT_Bhubaneswar_Logo.png'
+  },
+  {
+    name: 'IIIT Bhubaneswar',
+    logo: 'IIIT-BBS',
+    image: '/odisha-ai_website/Our_Partners_in_Innovation/IIIT-logo.jpg'
+  },
+  {
+    name: 'Startup Odisha',
+    logo: 'Startup Odisha',
+    image: '/odisha-ai_website/Our_Partners_in_Innovation/Startup_Odisha.svg.png'
+  },
+  {
+    name: 'Wadhwani Foundation',
+    logo: 'Wadhwani',
+    image: '/odisha-ai_website/Our_Partners_in_Innovation/wadhwani-logo.png'
+  }
 ];
 
 export const sectors = [
@@ -797,25 +833,29 @@ export const quickLinks = {
       name: 'IndiaAI Portal',
       url: 'https://indiaai.gov.in',
       icon: 'Globe',
-      description: 'National AI portal for resources, policies, and initiatives'
+      description: 'National AI portal for resources, policies, and initiatives',
+      image: '/odisha-ai_website/Important_Links/India_AI.png'
     },
     {
       name: 'IndiaAI Compute',
       url: 'https://indiaai.gov.in/compute',
       icon: 'Server',
-      description: 'Access to AI computing infrastructure and GPU resources'
+      description: 'Access to AI computing infrastructure and GPU resources',
+      image: '/odisha-ai_website/Important_Links/intel.png'
     },
     {
       name: 'IndiaAI Datasets (Kosh)',
       url: 'https://indiaai.gov.in/datasets',
       icon: 'Database',
-      description: 'Repository of Indian datasets for AI/ML development'
+      description: 'Repository of Indian datasets for AI/ML development',
+      image: '/odisha-ai_website/Important_Links/IndiaAI_Datasets_Kosh.png'
     },
     {
       name: 'MeitY',
       url: 'https://www.meity.gov.in',
       icon: 'Building2',
-      description: 'Ministry of Electronics and Information Technology'
+      description: 'Ministry of Electronics and Information Technology',
+      image: '/odisha-ai_website/Important_Links/meity-startup-hub-meity-startup-hub-01-01.jpg'
     }
   ],
   'Government': [
@@ -823,25 +863,29 @@ export const quickLinks = {
       name: 'NIC (National Informatics Centre)',
       url: 'https://www.nic.in',
       icon: 'Server',
-      description: 'Technology backbone for e-governance'
+      description: 'Technology backbone for e-governance',
+      image: '/odisha-ai_website/Important_Links/NIC.png'
     },
     {
       name: 'OCAC',
       url: 'https://www.ocac.in',
       icon: 'Building2',
-      description: 'Odisha Computer Application Centre'
+      description: 'Odisha Computer Application Centre',
+      image: '/odisha-ai_website/Important_Links/ocac.png'
     },
     {
       name: 'Government of Odisha',
       url: 'https://www.odisha.gov.in',
       icon: 'Flag',
-      description: 'Official portal of Odisha Government'
+      description: 'Official portal of Odisha Government',
+      image: '/odisha-ai_website/Important_Links/odisha-govt.png'
     },
     {
       name: 'Government of India',
       url: 'https://www.india.gov.in',
       icon: 'Flag',
-      description: 'National portal of Government of India'
+      description: 'National portal of Government of India',
+      image: '/odisha-ai_website/Important_Links/Government_of_India.png'
     }
   ],
   'Organizations': [
@@ -849,19 +893,22 @@ export const quickLinks = {
       name: 'People+AI',
       url: 'https://peopleplus.ai',
       icon: 'Users',
-      description: 'Building AI for Bharat, by Bharat'
+      description: 'Building AI for Bharat, by Bharat',
+      image: '/odisha-ai_website/Important_Links/People_AI.avif'
     },
     {
       name: 'Wadhwani Foundation',
       url: 'https://www.wadhwaniai.org',
       icon: 'Award',
-      description: 'AI solutions for social impact and development'
+      description: 'AI solutions for social impact and development',
+      image: '/odisha-ai_website/Important_Links/wadhwani.png'
     },
     {
       name: 'Intel India',
       url: 'https://www.intel.in',
       icon: 'Server',
-      description: 'Technology innovation and AI acceleration'
+      description: 'Technology innovation and AI acceleration',
+      image: '/odisha-ai_website/Important_Links/intel.png'
     }
   ]
 };
@@ -981,7 +1028,7 @@ export const aiTools = [
     description: 'National Language Translation Mission providing AI-powered translation and speech recognition for all Indian languages including Odia.',
     url: 'https://bhashini.gov.in',
     category: 'language',
-    icon: 'Languages',
+    image: '/odisha-ai_website/AI_Tools_Resources/Bhasin.png',
     gradient: 'from-blue-400 to-indigo-500',
     featured: true,
     provider: 'MeitY, Govt of India',
@@ -995,7 +1042,7 @@ export const aiTools = [
     description: 'Digital platform for Odia language learning, literature, and AI-powered language tools. Building Odia LLM to preserve and promote Odia language in the digital age.',
     url: 'https://odia.nic.in',
     category: 'language',
-    icon: 'BookOpen',
+    image: '/odisha-ai_website/AI_Tools_Resources/Odia_virtual_academy.png',
     gradient: 'from-orange-400 to-red-500',
     featured: true,
     provider: 'Govt of Odisha',
@@ -1009,7 +1056,7 @@ export const aiTools = [
     description: 'Access to high-performance computing infrastructure, GPUs, and cloud resources for AI research and development.',
     url: 'https://indiaai.gov.in/compute',
     category: 'infrastructure',
-    icon: 'Cpu',
+    image: '/odisha-ai_website/AI_Tools_Resources/India_AI_compute_portal.png',
     gradient: 'from-purple-400 to-pink-500',
     provider: 'IndiaAI',
     tags: ['GPU Access', 'Cloud Computing', 'HPC'],
@@ -1021,10 +1068,10 @@ export const aiTools = [
     description: 'Repository of curated Indian datasets for AI/ML training including Odia language datasets and regional data.',
     url: 'https://indiaai.gov.in/datasets',
     category: 'infrastructure',
-    icon: 'Database',
+    image: '/odisha-ai_website/AI_Tools_Resources/IndiaAI_Datasets_Kosh.png',
     gradient: 'from-green-400 to-teal-500',
     provider: 'IndiaAI',
-    tags: ['Datasets', 'Training Data', 'Open Data'],
+    tags: ['Datasets', 'Open Data', 'Indian Languages'],
     buttonText: 'Browse Datasets'
   },
   {
@@ -1033,10 +1080,10 @@ export const aiTools = [
     description: 'Test and experiment with various AI models including GPT, Llama, Gemini, and more in an interactive playground.',
     url: 'https://github.com/marketplace/models',
     category: 'models',
-    icon: 'Github',
+    image: '/odisha-ai_website/AI_Tools_Resources/Github.png',
     gradient: 'from-gray-400 to-gray-600',
     provider: 'GitHub',
-    tags: ['Model Testing', 'AI Playground', 'Multiple Models'],
+    tags: ['Model Testing', 'Playground', 'LLMs'],
     buttonText: 'Try Models'
   },
   {
@@ -1045,7 +1092,7 @@ export const aiTools = [
     description: 'Open-source Digital Public Infrastructure (DPI) platform for governance and citizen services with AI integration.',
     url: 'https://www.digit.org',
     category: 'opensource',
-    icon: 'Code',
+    image: '/odisha-ai_website/AI_Tools_Resources/Digit.png',
     gradient: 'from-yellow-400 to-orange-500',
     featured: true,
     provider: 'EkStep Foundation',
@@ -1059,7 +1106,7 @@ export const aiTools = [
     description: 'Open-source AI projects and tools built for Indian context, focusing on healthcare, agriculture, and education.',
     url: 'https://github.com/people-plus-ai',
     category: 'opensource',
-    icon: 'Github',
+    image: '/odisha-ai_website/AI_Tools_Resources/Hugging_face.png',
     gradient: 'from-teal-400 to-blue-500',
     provider: 'People+AI',
     tags: ['Open Source', 'AI for Good', 'Indian Context'],
@@ -1071,7 +1118,7 @@ export const aiTools = [
     description: 'Central platform for all digital governance initiatives, e-services, and technology programs across India.',
     url: 'https://www.digitalindia.gov.in',
     category: 'government',
-    icon: 'Globe',
+    image: '/odisha-ai_website/AI_Tools_Resources/Digital-india.jpg',
     gradient: 'from-blue-500 to-indigo-600',
     provider: 'Govt of India',
     tags: ['Digital Governance', 'e-Services', 'Digital India'],
@@ -1083,7 +1130,7 @@ export const aiTools = [
     description: 'Implementing e-governance projects and providing technology support for government digital transformation.',
     url: 'https://negd.gov.in',
     category: 'government',
-    icon: 'Database',
+    image: '/odisha-ai_website/AI_Tools_Resources/NeGD.png',
     gradient: 'from-orange-500 to-red-600',
     provider: 'MeitY',
     tags: ['e-Governance', 'Digital Services', 'Policy'],
@@ -1095,7 +1142,7 @@ export const aiTools = [
     description: 'Platform for open-source AI models, datasets, and tools. Access thousands of pre-trained models.',
     url: 'https://huggingface.co',
     category: 'opensource',
-    icon: 'Sparkles',
+    image: '/odisha-ai_website/AI_Tools_Resources/Hugging_face.png',
     gradient: 'from-yellow-300 to-orange-400',
     provider: 'Hugging Face',
     tags: ['Models', 'Datasets', 'Transformers'],
@@ -1107,7 +1154,7 @@ export const aiTools = [
     description: 'End-to-end open-source platform for machine learning with comprehensive tools and libraries.',
     url: 'https://www.tensorflow.org',
     category: 'opensource',
-    icon: 'Code',
+    image: '/odisha-ai_website/AI_Tools_Resources/tensorflow.webp',
     gradient: 'from-orange-400 to-red-500',
     provider: 'Google',
     tags: ['ML Framework', 'Deep Learning', 'Python'],
@@ -1119,7 +1166,7 @@ export const aiTools = [
     description: 'Open-source machine learning framework for research and production with dynamic computation graphs.',
     url: 'https://pytorch.org',
     category: 'opensource',
-    icon: 'Code',
+    image: '/odisha-ai_website/AI_Tools_Resources/Pytorch.png',
     gradient: 'from-red-400 to-orange-500',
     provider: 'Meta',
     tags: ['ML Framework', 'Research', 'Python'],
@@ -1242,6 +1289,7 @@ export const aiTrainingPrograms = [
     level: "Beginner to Advanced",
     icon: "GraduationCap",
     color: "blue",
+    image: "/odisha-ai_website/Skilling_on_Artificial_Intelligence/okcl.png",
     highlights: ["Government Certified", "Industry Projects", "Job Assistance"]
   },
   {
@@ -1253,6 +1301,7 @@ export const aiTrainingPrograms = [
     level: "Intermediate to Advanced",
     icon: "Rocket",
     color: "purple",
+    image: "/odisha-ai_website/Skilling_on_Artificial_Intelligence/future_skill_prime.webp",
     highlights: ["Free Courses", "Industry-Recognized", "Flexible Learning"]
   },
   {
@@ -1264,6 +1313,7 @@ export const aiTrainingPrograms = [
     level: "All Levels",
     icon: "BookOpen",
     color: "green",
+    image: "/odisha-ai_website/Skilling_on_Artificial_Intelligence/NPTEL.jpg",
     highlights: ["Virtual Labs", "Mentorship", "Certificate of Excellence"]
   },
   {
@@ -1275,6 +1325,7 @@ export const aiTrainingPrograms = [
     level: "Beginner to Intermediate",
     icon: "Users",
     color: "orange",
+    image: "/odisha-ai_website/Skilling_on_Artificial_Intelligence/YUVA_AI.png",
     highlights: ["Youth Focused", "Rural Outreach", "Free Training"]
   },
   {
@@ -1286,6 +1337,7 @@ export const aiTrainingPrograms = [
     level: "Beginner",
     icon: "Building2",
     color: "red",
+    image: "/odisha-ai_website/Skilling_on_Artificial_Intelligence/ocac-okcllogo.png",
     highlights: ["Government Officials", "Policy Focus", "Practical Applications"]
   },
   {
@@ -1297,6 +1349,7 @@ export const aiTrainingPrograms = [
     level: "Advanced",
     icon: "Zap",
     color: "yellow",
+     image: "/odisha-ai_website/Skilling_on_Artificial_Intelligence/Startup_Odisha.svg.png",
     highlights: ["Startup Focused", "Funding Support", "Industry Mentors"]
   }
 ];
@@ -1452,83 +1505,106 @@ export const tenders = [
 export const eventGallery = [
   {
     id: 1,
-    eventName: 'AI Policy 2025 Launch',
-    date: '2025-01-15',
+    eventName: 'AI Mission Flagship Summit 2025',
+    date: '2025-01-20',
     location: 'Bhubaneswar',
-    description: 'Official launch ceremony of Odisha AI Policy 2025 in presence of Chief Minister and dignitaries',
-    thumbnail: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&h=300&fit=crop',
+    description: 'Leaders from government, academia, and industry outlined flagship initiatives for the Odisha AI Mission.',
+    thumbnail: '/odisha-ai_website/Gallery/1.jpg',
     media: [
-      { type: 'photo', url: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=600&fit=crop', caption: 'Chief Minister addressing the gathering' },
-      { type: 'photo', url: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&h=600&fit=crop', caption: 'Policy document release ceremony' },
-      { type: 'photo', url: 'https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=800&h=600&fit=crop', caption: 'Dignitaries at the launch event' },
-      { type: 'video', url: 'https://www.youtube.com/embed/dQw4w9WgXcQ', caption: 'Full event coverage', thumbnail: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&h=300&fit=crop' }
+      { type: 'photo', url: '/odisha-ai_website/Gallery/1.jpg', caption: 'Dignitaries inaugurating the flagship summit' },
+      { type: 'photo', url: '/odisha-ai_website/Gallery/2.jpg', caption: 'Panel on responsible and inclusive AI policies' },
+      { type: 'photo', url: '/odisha-ai_website/Gallery/3.jpg', caption: 'Delegates networking with startup founders' }
     ]
   },
   {
     id: 2,
-    eventName: 'AI Innovation Centre Inauguration',
-    date: '2025-02-10',
-    location: 'Cuttack',
-    description: 'Inauguration of the first AI Innovation Centre at IIT Bhubaneswar campus',
-    thumbnail: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=400&h=300&fit=crop',
+    eventName: 'Innovation Lab Inauguration',
+    date: '2025-02-05',
+    location: 'IIT Bhubaneswar',
+    description: 'Launch of the state-of-the-art AI Innovation Lab with experiential demos and lab tours.',
+    thumbnail: '/odisha-ai_website/Gallery/4.jpg',
     media: [
-      { type: 'photo', url: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&h=600&fit=crop', caption: 'AI Innovation Centre exterior' },
-      { type: 'photo', url: 'https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=800&h=600&fit=crop', caption: 'State-of-the-art AI lab facilities' },
-      { type: 'photo', url: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=600&fit=crop', caption: 'Students working on AI projects' }
+      { type: 'photo', url: '/odisha-ai_website/Gallery/4.jpg', caption: 'Ribbon cutting to open the new innovation lab' },
+      { type: 'photo', url: '/odisha-ai_website/Gallery/5.jpg', caption: 'Hands-on demonstrations with AI hardware' },
+      { type: 'photo', url: '/odisha-ai_website/Gallery/6.jpg', caption: 'Researchers showcasing collaborative workspaces' }
     ]
   },
   {
     id: 3,
-    eventName: 'AI Hackathon 2025',
-    date: '2025-03-05',
-    location: 'Bhubaneswar',
-    description: '48-hour AI hackathon with participation from 200+ developers and students',
-    thumbnail: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=400&h=300&fit=crop',
+    eventName: 'AI for Youth Bootcamp',
+    date: '2025-02-18',
+    location: 'Cuttack',
+    description: 'Two-day bootcamp empowering students with practical AI skills, design thinking, and mentorship.',
+    thumbnail: '/odisha-ai_website/Gallery/7.jpg',
     media: [
-      { type: 'photo', url: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&h=600&fit=crop', caption: 'Hackathon participants coding' },
-      { type: 'photo', url: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop', caption: 'Team collaboration session' },
-      { type: 'photo', url: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&h=600&fit=crop', caption: 'Winner team receiving trophy' },
-      { type: 'video', url: 'https://www.youtube.com/embed/dQw4w9WgXcQ', caption: 'Hackathon highlights', thumbnail: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=400&h=300&fit=crop' }
+      { type: 'photo', url: '/odisha-ai_website/Gallery/7.jpg', caption: 'Students collaborating on real-world AI challenges' },
+      { type: 'photo', url: '/odisha-ai_website/Gallery/8.jpg', caption: 'Interactive mentoring session with AI experts' },
+      { type: 'photo', url: '/odisha-ai_website/Gallery/9.jpg', caption: 'Teams presenting prototypes to the jury' }
     ]
   },
   {
     id: 4,
-    eventName: 'AI Skills Training Program',
-    date: '2025-02-20',
-    location: 'Multiple Districts',
-    description: 'Mass training program for government officials on AI fundamentals and applications',
-    thumbnail: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&h=300&fit=crop',
+    eventName: 'Smart Governance Hackathon',
+    date: '2025-03-02',
+    location: 'Rourkela',
+    description: '24-hour hackathon co-creating AI solutions for smarter citizen services and digital governance.',
+    thumbnail: '/odisha-ai_website/Gallery/10.jpg',
     media: [
-      { type: 'photo', url: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&h=600&fit=crop', caption: 'Training session in progress' },
-      { type: 'photo', url: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&h=600&fit=crop', caption: 'Participants engaged in learning' },
-      { type: 'photo', url: 'https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?w=800&h=600&fit=crop', caption: 'Certificate distribution ceremony' }
+      { type: 'photo', url: '/odisha-ai_website/Gallery/10.jpg', caption: 'Participants outlining ideas for smart governance' },
+      { type: 'photo', url: '/odisha-ai_website/Gallery/11.jpg', caption: 'Multidisciplinary teams refining their prototypes' },
+      { type: 'photo', url: '/odisha-ai_website/Gallery/12.jpg', caption: 'Celebration of the winning governance technology' }
     ]
   },
   {
     id: 5,
-    eventName: 'Startup Odisha AI Expo',
-    date: '2025-03-15',
-    location: 'Bhubaneswar',
-    description: 'Exhibition showcasing AI startups and their innovative solutions for various sectors',
-    thumbnail: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=400&h=300&fit=crop',
+    eventName: 'Healthcare AI Workshop',
+    date: '2025-03-18',
+    location: 'AIIMS Bhubaneswar',
+    description: 'Clinicians and technologists explored AI-assisted diagnostics and hospital automation workflows.',
+    thumbnail: '/odisha-ai_website/Gallery/2.jpg',
     media: [
-      { type: 'photo', url: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&h=600&fit=crop', caption: 'Startup expo stalls' },
-      { type: 'photo', url: 'https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&h=600&fit=crop', caption: 'Product demonstrations' },
-      { type: 'photo', url: 'https://images.unsplash.com/photo-1551818255-e6e10975bc17?w=800&h=600&fit=crop', caption: 'Networking session' },
-      { type: 'video', url: 'https://www.youtube.com/embed/dQw4w9WgXcQ', caption: 'Expo walkthrough', thumbnail: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=400&h=300&fit=crop' }
+      { type: 'photo', url: '/odisha-ai_website/Gallery/2.jpg', caption: 'Panel discussion on AI-assisted diagnostics' },
+      { type: 'photo', url: '/odisha-ai_website/Gallery/6.jpg', caption: 'Showcase of AI-powered medical devices' },
+      { type: 'photo', url: '/odisha-ai_website/Gallery/11.jpg', caption: 'Healthcare leaders mapping patient impact journeys' }
     ]
   },
   {
     id: 6,
-    eventName: 'AI in Healthcare Summit',
-    date: '2025-02-28',
-    location: 'Cuttack',
-    description: 'Summit bringing together healthcare professionals and AI experts to discuss AI applications in medical field',
-    thumbnail: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&h=300&fit=crop',
+    eventName: 'AI Leadership Roundtable',
+    date: '2025-03-25',
+    location: 'Bhubaneswar',
+    description: 'Secretaries, industry partners, and researchers aligned on Odisha’s AI policy roadmap and governance model.',
+    thumbnail: '/odisha-ai_website/Gallery/5.jpg',
     media: [
-      { type: 'photo', url: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=600&fit=crop', caption: 'Healthcare summit keynote' },
-      { type: 'photo', url: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&h=600&fit=crop', caption: 'AI diagnostic tools showcase' },
-      { type: 'photo', url: 'https://images.unsplash.com/photo-1581093458791-9f3c3250a046?w=800&h=600&fit=crop', caption: 'Panel discussion on AI ethics' }
+      { type: 'photo', url: '/odisha-ai_website/Gallery/5.jpg', caption: 'Leadership dialogue on scaling Odisha’s AI roadmap' },
+      { type: 'photo', url: '/odisha-ai_website/Gallery/8.jpg', caption: 'Breakout discussion on public-private partnerships' },
+      { type: 'photo', url: '/odisha-ai_website/Gallery/10.jpg', caption: 'Collective sign-off on the next milestones' }
+    ]
+  },
+  {
+    id: 7,
+    eventName: 'Startup Odisha AI Showcase',
+    date: '2025-04-05',
+    location: 'O-Hub, Bhubaneswar',
+    description: 'AI startups demonstrated prototypes across agritech, fintech, and civic innovation to investors and mentors.',
+    thumbnail: '/odisha-ai_website/Gallery/9.jpg',
+    media: [
+      { type: 'photo', url: '/odisha-ai_website/Gallery/9.jpg', caption: 'Founders pitching their AI products to mentors' },
+      { type: 'photo', url: '/odisha-ai_website/Gallery/4.jpg', caption: 'Visitors experiencing live product demos' },
+      { type: 'photo', url: '/odisha-ai_website/Gallery/12.jpg', caption: 'Networking between startups and ecosystem partners' }
+    ]
+  },
+  {
+    id: 8,
+    eventName: 'Digital Inclusion Roadshow',
+    date: '2025-04-12',
+    location: 'Berhampur',
+    description: 'Grassroots workshops highlighting citizen-facing AI services and digital skilling opportunities.',
+    thumbnail: '/odisha-ai_website/Gallery/8.jpg',
+    media: [
+      { type: 'photo', url: '/odisha-ai_website/Gallery/8.jpg', caption: 'Community volunteers guiding citizens through AI services' },
+      { type: 'photo', url: '/odisha-ai_website/Gallery/3.jpg', caption: 'Awareness sessions on AI-driven public benefits' },
+      { type: 'photo', url: '/odisha-ai_website/Gallery/7.jpg', caption: 'Local youth demonstrating digital assistance tools' }
     ]
   }
 ];
