@@ -38,19 +38,20 @@ const Header = () => {
               onClick={() => scrollToSection('main-content')}
               className="flex items-center space-x-3 group"
             >
+
               <img
-                src="/odisha-ai_website/images/mission-removebg-preview.png"
-                alt="Odisha AI Mission Logo"
-                className="w-12 h-12 object-contain group-hover:scale-110 transition-transform duration-300"
+                src="/odisha-ai_website/logo/odisha-govt.svg"
+                alt="Government of Odisha"
+                className="w-[200px] object-contain"
               />
-              <div className="leading-tight text-left">
+              {/*} <div className="leading-tight text-left">
                 <h1 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">
                   Odisha AI Mission
                 </h1>
                 <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
                   Government of Odisha
                 </p>
-              </div>
+              </div>*/}
             </button>
 
             {/* Partner Logos */}
@@ -58,12 +59,19 @@ const Header = () => {
               {/* Odisha Govt Logo */}
               <div className="flex flex-col items-center space-y-1">
                 <img
-                  src="/odisha-ai_website/logo/odisha-govt.svg"
-                  alt="Government of Odisha"
+                  src="/odisha-ai_website/images/mission-removebg-preview.png"
+                  alt="Odisha AI Mission Logo"
+                  className="w-20 object-contain group-hover:scale-110 transition-transform duration-300"
+                />
+              </div>
+              {/* IndiaAI Logo */}
+              <div className="flex flex-col items-center space-y-1">
+                <img
+                  src="/odisha-ai_website/logo/India_AI_logo.png"
+                  alt="IndiaAI"
                   className="h-10 w-auto object-contain"
                 />
               </div>
-
               {/* E&IT Dept / OCAC Logo */}
               <div className="flex flex-col items-center space-y-1">
                 <img
@@ -73,14 +81,7 @@ const Header = () => {
                 />
               </div>
 
-              {/* IndiaAI Logo */}
-              <div className="flex flex-col items-center space-y-1">
-                <img
-                  src="/odisha-ai_website/logo/India_AI_logo.png"
-                  alt="IndiaAI"
-                  className="h-10 w-auto object-contain"
-                />
-              </div>
+
             </div>
           </div>
 
