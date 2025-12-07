@@ -87,6 +87,16 @@ const Header = () => {
 
           {/* Right Actions: Settings & Hamburger */}
           <div className="flex items-center space-x-2">
+            {/* CM Photo */}
+            <div className="hidden sm:block mr-2">
+              <img
+                src="/odisha-ai_website/images/Mohan_Charan_Majhi.jpg"
+                alt="Hon'ble CM"
+                className="w-16 h-16 md:w-20 md:h-20 rounded-lg border-2 border-orange-100 object-cover"
+                title="Hon'ble Chief Minister"
+              />
+            </div>
+
             {/* Accessibility Toolbar Button */}
             <div className="relative">
               <AccessibilityToolbar inline={true} />
