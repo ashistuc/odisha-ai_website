@@ -143,7 +143,7 @@ const ImplementationPhaseSection = () => {
           Implementation Roadmap
         </Badge>
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-          <span className="bg-gradient-to-r from-orange-600 to-blue-600 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-orange-600 to-orange-700 bg-clip-text text-transparent">
             Get It Done:
           </span>{' '}
           AI Implementation Timeline

@@ -33,7 +33,7 @@ const ActsNotificationsSection = ({ items }) => {
           Legal & Regulatory Framework
         </Badge>
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Acts, Notifications, <span className="bg-gradient-to-r from-blue-600 to-orange-600 bg-clip-text text-transparent">Govt Orders & Guidelines</span>
+          Acts, Notifications, <span className="bg-gradient-to-r from-orange-600 to-orange-700 bg-clip-text text-transparent">Govt Orders & Guidelines</span>
         </h2>
         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
           Stay updated with the latest legal framework, policy notifications, and government directives for AI implementation

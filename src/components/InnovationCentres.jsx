@@ -53,7 +53,7 @@ const InnovationCentres = ({ centres }) => {
           Innovation Network
         </Badge>
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-          AI Innovation <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Centres of Excellence</span>
+          AI Innovation <span className="bg-gradient-to-r from-orange-600 to-orange-700 bg-clip-text text-transparent">Centres of Excellence</span>
         </h2>
         <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
           Pioneering AI research and development across Odisha's premier institutions

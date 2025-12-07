@@ -51,7 +51,7 @@ const PolicyTargetsCarousel = ({ policyTargets }) => {
           AI Policy 2025 Roadmap
         </Badge>
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Transforming Odisha with <span className="bg-gradient-to-r from-blue-600 to-orange-600 bg-clip-text text-transparent">Ambitious Targets</span>
+          Transforming Odisha with <span className="bg-gradient-to-r from-orange-600 to-orange-700 bg-clip-text text-transparent">Ambitious Targets</span>
         </h2>
         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
           Our vision to become India's AI powerhouse - tracking progress across key sectors from 2025 to 2036

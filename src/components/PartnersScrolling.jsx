@@ -1,103 +1,109 @@
 import React from 'react';
-import { Handshake } from 'lucide-react';
-import { Badge } from './ui/badge';
+import { Handshake, ArrowRight, ExternalLink } from 'lucide-react';
+import { Card } from './ui/card';
 
-const PartnersScrolling = ({ partners }) => {
-  // Duplicate the partners array for seamless infinite scroll
-  const duplicatedPartners = [...partners, ...partners];
+const PartnersScrolling = () => {
+  const partners = [
+    {
+      id: 1,
+      name: 'AHRC, IIT Bhubaneswar',
+      role: 'Academic Collaborators',
+      description: 'A leading academic hub advancing high-impact AI research and innovation for real-world applications.',
+      logo: '/odisha-ai_website/Our_Partners_in_Innovation/IIT_Bhubaneswar_Logo.png',
+      url: 'https://www.iitbbs.ac.in/index.php/ahrc/',
+      accent: 'blue'
+    },
+    {
+      id: 2,
+      name: 'Wadhwani Foundation',
+      role: 'Training Partner',
+      description: 'A global non-profit accelerating large-scale skilling and entrepreneurship for workforce transformation.',
+      logo: '/odisha-ai_website/Our_Partners_in_Innovation/wadhwani-logo.webp',
+      url: 'https://wadhwanifoundation.org/',
+      accent: 'indigo'
+    },
+    {
+      id: 3,
+      name: 'NASSCOM',
+      role: 'Centre of Excellence Partner',
+      description: 'India’s apex technology industry body driving AI innovation, startup growth, and enterprise adoption nationwide.',
+      logo: '/odisha-ai_website/Our_Partners_in_Innovation/nasscom-logo.jpg',
+      url: 'https://nasscom.in/',
+      accent: 'orange'
+    }
+  ];
 
   return (
-    <div>
-      <div className="text-center mb-12">
-        <Badge className="bg-indigo-100 text-indigo-700 hover:bg-indigo-200 mb-4 px-4 py-2">
-          <Handshake className="w-4 h-4 mr-2" />
-          Collaboration Network
-        </Badge>
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Our Partners in <span className="bg-gradient-to-r from-blue-600 to-orange-600 bg-clip-text text-transparent">Innovation</span>
-        </h2>
-        <p className="text-lg text-gray-600">
-          Collaborating with leading organizations to build Odisha's AI ecosystem
-        </p>
-      </div>
+    <section className="py-24 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-      {/* Scrolling Container */}
-      <div className="relative overflow-hidden py-8 bg-gradient-to-r from-gray-50 via-white to-gray-50 rounded-2xl">
-        {/* Gradient overlays for fade effect */}
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10"></div>
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10"></div>
+        {/* Header */}
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center space-x-2 bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 px-4 py-1.5 rounded-full mb-6 text-sm font-semibold border border-purple-100 dark:border-purple-800/50 shadow-sm">
+            <Handshake className="w-4 h-4" />
+            <span>Strategic Alliances</span>
+          </div>
 
-        {/* Scrolling content - Row 1 (Left to Right) */}
-        <div className="flex animate-scroll-left hover:pause-animation mb-4">
-          {duplicatedPartners.map((partner, index) => {
-            const hasImage = Boolean(partner.image);
-            return (
-              <div
-                key={index}
-                className="flex-shrink-0 mx-6 w-40"
-              >
-                <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border-2 border-gray-100 hover:border-orange-200 group">
-                  <div className="flex flex-col items-center">
-                    <div className="w-20 h-20 rounded-lg shadow-sm flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 bg-white border border-gray-100 overflow-hidden">
-                      {hasImage ? (
-                        <img
-                          src={partner.image}
-                          alt={`${partner.name} logo`}
-                          loading="lazy"
-                          className="w-full h-full object-contain p-2"
-                        />
-                      ) : (
-                        <span className="text-sm font-bold text-gray-700">{partner.logo}</span>
-                      )}
-                    </div>
-                    <p className="text-xs text-gray-600 font-semibold text-center">
-                      {partner.name}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">
+            Partners in <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Innovation</span>
+          </h2>
+
+          <p className="max-w-2xl mx-auto text-lg text-gray-600 dark:text-gray-400">
+            Collaborating with industry leaders and academic pioneers to drive the future of AI in Odisha.
+          </p>
         </div>
 
-        {/* Scrolling content - Row 2 (Right to Left) */}
-        <div className="flex animate-scroll-right hover:pause-animation">
-          {duplicatedPartners.map((partner, index) => {
-            const hasImage = Boolean(partner.image);
-            return (
-              <div
-                key={`row2-${index}`}
-                className="flex-shrink-0 mx-6 w-40"
-              >
-                <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border-2 border-gray-100 dark:border-gray-700 hover:border-orange-200 dark:hover:border-orange-600 group">
-                  <div className="flex flex-col items-center">
-                    <div className="w-20 h-20 rounded-lg shadow-sm flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-700 overflow-hidden">
-                      {hasImage ? (
-                        <img
-                          src={partner.image}
-                          alt={`${partner.name} logo`}
-                          loading="lazy"
-                          className="w-full h-full object-contain p-2"
-                        />
-                      ) : (
-                        <span className="text-sm font-bold text-gray-700 dark:text-gray-300">{partner.logo}</span>
-                      )}
-                    </div>
-                    <p className="text-xs text-gray-600 dark:text-gray-400 font-semibold text-center">
-                      {partner.name}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
+        {/* 3-Card Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {partners.map((partner) => (
+            <div
+              key={partner.id}
+              className="group relative h-full"
+            >
+              <div className={`absolute -inset-0.5 bg-gradient-to-b from-${partner.accent}-500 to-${partner.accent}-600 rounded-2xl opacity-20 group-hover:opacity-100 blur transition duration-500`} />
 
-      <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-6">
-        ...and many more organizations working together to transform Odisha through AI
-      </p>
-    </div>
+              <div className="relative h-full bg-white dark:bg-gray-800 rounded-2xl p-8 flex flex-col items-center text-center shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700">
+
+                {/* Logo Box */}
+                <div className="w-full h-32 mb-8 bg-gray-50 dark:bg-gray-900/50 rounded-xl flex items-center justify-center p-6 transition-all duration-300 group-hover:scale-105 group-hover:bg-white dark:group-hover:bg-gray-800 border border-transparent group-hover:border-gray-100 dark:group-hover:border-gray-700">
+                  <img
+                    src={partner.logo}
+                    alt={partner.name}
+                    className="max-w-full max-h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500"
+                  />
+                </div>
+
+                {/* Content */}
+                <div className={`text-xs font-bold uppercase tracking-wider mb-3 px-3 py-1 rounded-full bg-${partner.accent}-50 text-${partner.accent}-700 dark:bg-${partner.accent}-900/30 dark:text-${partner.accent}-300`}>
+                  {partner.role}
+                </div>
+
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 transition-all">
+                  {partner.name}
+                </h3>
+
+                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-8 flex-grow">
+                  {partner.description}
+                </p>
+
+                {/* Link */}
+                <a
+                  href={partner.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`inline-flex items-center font-semibold text-${partner.accent}-600 hover:text-${partner.accent}-700 transition-colors mt-auto group/link`}
+                >
+                  Visit Website
+                  <ExternalLink className="w-4 h-4 ml-2 transform group-hover/link:translate-x-1 transition-transform" />
+                </a>
+
+              </div>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </section>
   );
 };
 

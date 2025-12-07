@@ -18,7 +18,7 @@ const FAQSection = ({ faqs }) => {
           Frequently Asked Questions
         </Badge>
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Got Questions? We've Got <span className="bg-gradient-to-r from-blue-600 to-orange-600 bg-clip-text text-transparent">Answers</span>
+          Got Questions? We've Got <span className="bg-gradient-to-r from-orange-600 to-orange-700 bg-clip-text text-transparent">Answers</span>
         </h2>
         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
           Everything you need to know about Odisha's AI Mission and how you can be a part of it

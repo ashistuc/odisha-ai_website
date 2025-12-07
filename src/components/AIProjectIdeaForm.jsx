@@ -83,7 +83,7 @@ const AIProjectIdeaForm = () => {
           Innovation Hub
         </Badge>
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Share Your <span className="bg-gradient-to-r from-purple-600 to-orange-600 bg-clip-text text-transparent">Innovative AI Project Idea</span>
+          Share Your <span className="bg-gradient-to-r from-orange-600 to-orange-700 bg-clip-text text-transparent">Innovative AI Project Idea</span>
         </h2>
         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
           Have a groundbreaking AI solution? Submit your idea and get support from Odisha's AI ecosystem

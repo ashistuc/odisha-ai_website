@@ -47,12 +47,12 @@ const LoadingScreen = ({ onLoadComplete }) => {
       <div className="text-center relative z-10">
         {/* Animated AI-themed Logo */}
         <div className="mb-8 relative">
-          {/* Outer rotating ring */}
+          {/* Outer rotating ring 
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="w-56 h-56 border-4 border-orange-300/30 rounded-full animate-spin-slow"></div>
           </div>
-          
-          {/* Logo with pulsing effect */}
+*/}
+          {/* Logo with pulsing effect 
           <div className="relative animate-pulse-slow">
             <div className="w-48 h-48 mx-auto bg-gradient-to-br from-orange-400 to-orange-600 rounded-full flex items-center justify-center shadow-2xl">
               <div className="text-white text-center">
@@ -60,13 +60,16 @@ const LoadingScreen = ({ onLoadComplete }) => {
                 <div className="text-xs font-semibold tracking-wider">ODISHA</div>
               </div>
             </div>
-            {/* Inner glow ring */}
+          
             <div className="absolute inset-0 w-48 h-48 mx-auto rounded-full bg-orange-400/20 blur-xl animate-pulse"></div>
           </div>
+           */}
         </div>
 
+        <img src="odisha-ai_website/images/mission-removebg-preview.png" className="w-96 mx-auto mb-8" alt="" />
+
         {/* Loading Text with gradient */}
-        <h1 className="text-4xl font-bold bg-gradient-to-r from-orange-600 to-blue-600 bg-clip-text text-transparent mb-2 animate-in fade-in slide-in-from-bottom-4">
+        <h1 className="text-4xl font-bold bg-gradient-to-r from-orange-600 to-orange-600 bg-clip-text text-transparent mb-2 animate-in fade-in slide-in-from-bottom-4">
           Odisha AI Mission
         </h1>
         <p className="text-gray-600 dark:text-gray-300 mb-8 text-lg animate-in fade-in slide-in-from-bottom-6 duration-700">

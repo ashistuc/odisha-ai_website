@@ -4,7 +4,7 @@ import { useTheme } from '../contexts/ThemeContext';
 import { Button } from './ui/button';
 import { Card, CardContent } from './ui/card';
 
-const AccessibilityToolbar = () => {
+const AccessibilityToolbar = ({ inline = false }) => {
   const { theme, fontSize, highContrast, toggleTheme, changeFontSize, toggleHighContrast } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const [screenReader, setScreenReader] = useState(false);
@@ -38,15 +38,17 @@ const AccessibilityToolbar = () => {
 
   return (
     <>
-      {/* Floating Accessibility Button - Top Right */}
+      {/* Accessibility Trigger Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed top-6 right-6 z-[100] w-14 h-14 bg-orange-600 hover:bg-orange-700 dark:bg-orange-500 dark:hover:bg-orange-600 text-white rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-4 focus:ring-orange-300"
+        className={inline
+          ? "p-2 text-gray-700 dark:text-white hover:text-orange-600 transition-colors duration-200 focus:outline-none"
+          : "fixed top-6 right-6 z-[100] w-14 h-14 bg-orange-600 hover:bg-orange-700 dark:bg-orange-500 dark:hover:bg-orange-600 text-white rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-4 focus:ring-orange-300"
+        }
         aria-label="Open accessibility settings"
         aria-expanded={isOpen}
-        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
       >
-        <Settings className={`w-6 h-6 text-white ${isOpen ? 'rotate-90' : ''} transition-transform duration-300`} style={{ display: 'block' }} />
+        <Settings className={`w-6 h-6 ${!inline && 'text-white'} ${isOpen ? 'rotate-90' : ''} transition-transform duration-300`} />
       </button>
 
       {/* Accessibility Panel */}
@@ -111,11 +113,10 @@ const AccessibilityToolbar = () => {
                     <button
                       key={size}
                       onClick={() => handleFontSizeChange(size)}
-                      className={`p-3 rounded-lg border-2 transition-all font-medium focus:outline-none focus:ring-2 focus:ring-orange-500 ${
-                        fontSize === size
-                          ? 'border-orange-600 bg-orange-50 dark:bg-orange-900/20 text-orange-700 dark:text-orange-400'
-                          : 'border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-500'
-                      }`}
+                      className={`p-3 rounded-lg border-2 transition-all font-medium focus:outline-none focus:ring-2 focus:ring-orange-500 ${fontSize === size
+                        ? 'border-orange-600 bg-orange-50 dark:bg-orange-900/20 text-orange-700 dark:text-orange-400'
+                        : 'border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-500'
+                        }`}
                       aria-label={`Set font size to ${size}`}
                       aria-pressed={fontSize === size}
                     >
@@ -192,12 +193,7 @@ const AccessibilityToolbar = () => {
       )}
 
       {/* Skip to main content link */}
-      <a
-        href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-orange-600 focus:text-white focus:rounded focus:shadow-lg"
-      >
-        Skip to main content
-      </a>
+
     </>
   );
 };

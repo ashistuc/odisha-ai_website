@@ -199,6 +199,26 @@ const InteractivePDFReader = ({ isOpen, onClose, pdfUrl }) => {
   const totalPages = bookPages.length;
   const displayPage = totalPages > 0 ? Math.min(currentPage, totalPages) : 0;
 
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        handlePrev();
+      } else if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        handleNext();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen]);
+
   const handlePrev = () => {
     if (turnInstanceRef.current) {
       turnInstanceRef.current.turn('previous');
@@ -236,10 +256,10 @@ const InteractivePDFReader = ({ isOpen, onClose, pdfUrl }) => {
       onClick={handleClose}
     >
       <div
-        className="relative w-full max-w-6xl h-[90vh] bg-slate-900/70 border border-white/10 rounded-3xl shadow-2xl overflow-hidden flex flex-col"
+        className="relative w-full max-w-6xl max-h-[90vh] bg-slate-900/70 border border-white/10 rounded-3xl shadow-2xl overflow-hidden flex flex-col"
         onClick={(event) => event.stopPropagation()}
       >
-        <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-slate-900/80 text-white">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-slate-900/80 text-white flex-shrink-0">
           <div>
             <p className="text-xs uppercase tracking-[0.3em] text-orange-300">Official Document</p>
             <h2 className="text-xl font-semibold">Odisha AI Policy 2025</h2>
@@ -259,9 +279,9 @@ const InteractivePDFReader = ({ isOpen, onClose, pdfUrl }) => {
           </div>
         </div>
 
-        <div className="relative flex-1 flex items-center justify-center bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+        <div className="relative flex-1 min-h-[400px] flex items-center justify-center bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 overflow-y-auto overflow-x-hidden px-6 py-6">
           {loading && (
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-white space-y-4 px-6">
+            <div className="flex flex-col items-center justify-center text-white space-y-4 px-6">
               <Loader2 className="w-10 h-10 animate-spin" />
               <p className="text-sm tracking-wide uppercase text-white/70">
                 Loading AI Policy… {loadProgress > 0 ? `${loadProgress}%` : ''}
@@ -284,8 +304,8 @@ const InteractivePDFReader = ({ isOpen, onClose, pdfUrl }) => {
 
           {!loading && !error && pages.length > 0 && (
             <div
-              className="shadow-2xl rounded-2xl bg-white overflow-hidden"
-              style={{ width: `${bookSize.width}px`, height: `${bookSize.height}px` }}
+              className="shadow-2xl rounded-2xl bg-white overflow-hidden flex-shrink-0"
+              style={{ width: `${bookSize.width}px`, height: `${bookSize.height}px`, maxWidth: 'calc(100% - 24px)', maxHeight: '100%' }}
             >
               <div ref={bookRef} className="w-full h-full">
                 {bookPages.map((page) => (
@@ -309,7 +329,7 @@ const InteractivePDFReader = ({ isOpen, onClose, pdfUrl }) => {
           )}
         </div>
 
-        <div className="px-6 py-4 border-t border-white/10 bg-slate-900/85 flex flex-wrap md:flex-nowrap items-center justify-between gap-3">
+        <div className="px-6 py-4 border-t border-white/10 bg-slate-900/85 flex flex-wrap items-center justify-between gap-4 flex-shrink-0">
           <div className="flex w-full md:w-auto items-center justify-center md:justify-start gap-3">
             <Button
               onClick={(event) => {
@@ -333,6 +353,11 @@ const InteractivePDFReader = ({ isOpen, onClose, pdfUrl }) => {
               Next
               <ChevronRight className="w-4 h-4 ml-2" />
             </Button>
+          </div>
+          <div className="hidden md:flex items-center text-white/60 text-xs gap-2">
+            <span>💡 Use</span>
+            <kbd className="px-2 py-1 rounded bg-white/10 border border-white/20 font-mono text-white">← →</kbd>
+            <span>to navigate</span>
           </div>
           <Button
             className="w-full md:w-auto bg-white/10 hover:bg-white/20 text-white border border-white/20 shadow-md"

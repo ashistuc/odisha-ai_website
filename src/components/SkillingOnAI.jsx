@@ -33,7 +33,7 @@ const SkillingOnAI = ({ programs }) => {
         </Badge>
         <h2 className="text-4xl md:text-5xl font-bold mb-6">
           <span className="text-gray-900">Skilling on </span>
-          <span className="bg-gradient-to-r from-orange-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-orange-600 via-orange-700 to-orange-800 bg-clip-text text-transparent">
             Artificial Intelligence
           </span>
         </h2>

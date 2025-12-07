@@ -122,7 +122,7 @@ const EnhancedHeroCarousel = ({ slides, onReadPolicy }) => {
                 className="border-2 border-white text-white hover:bg-white/10 text-lg px-8 py-6 transform transition-all hover:scale-105"
                 onClick={handleReadPolicy}
               >
-                Read AI Policy 2025
+                Read Odisha AI policy 2025
               </Button>
             </div>
           </div>

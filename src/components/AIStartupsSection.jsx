@@ -25,7 +25,7 @@ const AIStartupsSection = ({ startups }) => {
           Innovation Ecosystem
         </Badge>
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-          AI Startups <span className="bg-gradient-to-r from-blue-600 to-orange-600 bg-clip-text text-transparent">Powering Odisha</span>
+          AI Startups <span className="bg-gradient-to-r from-orange-600 to-orange-700 bg-clip-text text-transparent">Powering Odisha</span>
         </h2>
         <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
           Meet the innovative AI startups transforming industries and solving real-world problems

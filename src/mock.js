@@ -1766,12 +1766,12 @@ export const heroSlides = [
   {
     id: 5,
     type: 'image',
-    imageUrl: '/odisha-ai_website/images/1.png',
-    title: 'Smart Cities & Digital Governance',
-    subtitle: 'AI-Enabled Public Services for Every Citizen',
-    description: 'Deploying 200+ AI use cases across government departments by 2036',
-    logos: ['Govt of Odisha', 'IndiaAI', 'OCAC'],
-    event: 'Digital Transformation Conclave 2025 - Dec 4-5'
+    imageUrl: '/odisha-ai_website/images/first.jpg',
+    title: '',
+    subtitle: '',
+    description: '',
+    logos: [],
+    event: ''
   },
   {
     id: 6,

@@ -1,46 +1,51 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Logo from './Logo';
 
 const IntroQuotesSequence = ({ onComplete }) => {
   const [step, setStep] = useState(0);
   const [highlightedText, setHighlightedText] = useState('');
+  const textRef = useRef(null);
+  const indexRef = useRef(0);
+  const animationIdRef = useRef(null);
 
   const pmModiQuote = "Artificial Intelligence is not just a technological revolution, it is a means to empower humanity. India must lead the world in ethical and inclusive AI development.";
   const cmQuote = "Odisha AI Policy 2025 is our commitment to transform governance, empower citizens, and build a future where technology serves every Odia. We will make Odisha India's AI powerhouse.";
 
+  const animateText = (text, onComplete) => {
+    indexRef.current = 0;
+    setHighlightedText('');
+
+    const animate = () => {
+      if (indexRef.current <= text.length) {
+        setHighlightedText(text.substring(0, indexRef.current));
+        indexRef.current++;
+        animationIdRef.current = setTimeout(animate, 30);
+      } else {
+        clearTimeout(animationIdRef.current);
+        setTimeout(onComplete, 2000);
+      }
+    };
+
+    animate();
+  };
+
   useEffect(() => {
     if (step === 0) {
-      // PM Modi quote with highlighting effect
-      let index = 0;
-      const interval = setInterval(() => {
-        setHighlightedText(pmModiQuote.substring(0, index));
-        index++;
-        if (index > pmModiQuote.length) {
-          clearInterval(interval);
-          setTimeout(() => setStep(1), 2000);
-        }
-      }, 30);
-      return () => clearInterval(interval);
+      animateText(pmModiQuote, () => setStep(1));
     } else if (step === 1) {
-      // CM quote with highlighting effect
-      setHighlightedText('');
-      let index = 0;
-      const interval = setInterval(() => {
-        setHighlightedText(cmQuote.substring(0, index));
-        index++;
-        if (index > cmQuote.length) {
-          clearInterval(interval);
-          setTimeout(() => setStep(2), 2000);
-        }
-      }, 30);
-      return () => clearInterval(interval);
+      animateText(cmQuote, () => setStep(2));
     } else if (step === 2) {
-      // Zoom animation
       setTimeout(() => {
         if (onComplete) onComplete();
       }, 3000);
     }
-  }, [step]);
+
+    return () => {
+      if (animationIdRef.current) {
+        clearTimeout(animationIdRef.current);
+      }
+    };
+  }, [step, onComplete]);
 
   if (step === 0) {
     // PM Modi Quote Screen
@@ -69,7 +74,7 @@ const IntroQuotesSequence = ({ onComplete }) => {
             </div>
             <div className="relative">
               <div className="absolute -left-6 -top-4 text-8xl text-orange-500 opacity-30">"</div>
-              <p className="text-2xl text-white leading-relaxed relative z-10">
+              <p ref={textRef} className="text-2xl text-white leading-relaxed relative z-10">
                 {highlightedText}
                 <span className="inline-block w-1 h-8 bg-orange-500 animate-pulse ml-1"></span>
               </p>
@@ -108,7 +113,7 @@ const IntroQuotesSequence = ({ onComplete }) => {
             </div>
             <div className="relative">
               <div className="absolute -left-6 -top-4 text-8xl text-blue-500 opacity-30">"</div>
-              <p className="text-2xl text-white leading-relaxed relative z-10">
+              <p ref={textRef} className="text-2xl text-white leading-relaxed relative z-10 notranslate">
                 {highlightedText}
                 <span className="inline-block w-1 h-8 bg-blue-500 animate-pulse ml-1"></span>
               </p>
@@ -129,7 +134,7 @@ const IntroQuotesSequence = ({ onComplete }) => {
             <div className="mb-8 transform scale-150">
               <Logo />
             </div>
-            <h1 className="text-6xl font-bold bg-gradient-to-r from-orange-600 via-red-600 to-blue-600 bg-clip-text text-transparent animate-pulse mb-4">
+            <h1 className="text-6xl font-bold bg-gradient-to-r from-orange-600 via-red-600 to-orange-600 bg-clip-text text-transparent animate-pulse mb-4">
               Odisha AI Mission
             </h1>
             <p className="text-2xl text-gray-700 font-medium">

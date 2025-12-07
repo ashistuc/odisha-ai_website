@@ -4,6 +4,7 @@
   "homepage": "https://ashistuc.github.io/odisha-ai_website",
   "private": true,
   "dependencies": {
+    "@google-cloud/translate": "^9.3.0",
     "@hookform/resolvers": "^5.0.1",
     "@radix-ui/react-accordion": "^1.2.8",
     "@radix-ui/react-alert-dialog": "^1.1.11",
@@ -45,6 +46,7 @@
     "next-themes": "^0.4.6",
     "pdfjs-dist": "^5.4.449",
     "react": "^19.0.0",
+    "react-auto-translate": "^0.0.6",
     "react-day-picker": "8.10.1",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.56.2",
@@ -87,6 +89,7 @@
     "eslint-plugin-import": "2.31.0",
     "eslint-plugin-jsx-a11y": "6.10.2",
     "eslint-plugin-react": "7.37.4",
+    "eslint-plugin-react-hooks": "5.1.0",
     "gh-pages": "^6.3.0",
     "globals": "15.15.0",
     "postcss": "^8.4.49",
