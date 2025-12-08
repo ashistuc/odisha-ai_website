@@ -155,7 +155,7 @@ export const detailedProjects = [
     department: 'Finance Department',
     partner: 'NIC Odisha',
     status: 'Concept',
-     image: '/odisha-ai_website/Featured_AI_Projects_in_Odisha/indian_logo.jpeg',
+    image: '/odisha-ai_website/Featured_AI_Projects_in_Odisha/indian_logo.jpeg',
     details: 'Next-gen financial management with predictive analytics',
     objective: 'To modernize Odisha\u2019s financial management system with AI-driven budgeting, expenditure tracking, revenue forecasting, and anomaly detection for enhanced fiscal governance and transparency.',
     problem: 'Existing IFMS lacked predictive capabilities for budget planning, manual reconciliation processes were error-prone, delayed detection of financial irregularities, and limited real-time insights for decision-making.',
@@ -235,7 +235,7 @@ export const detailedProjects = [
     department: 'General Administration Department',
     partner: 'OCAC',
     status: 'Live',
-     image: '/odisha-ai_website/Featured_AI_Projects_in_Odisha/indian_logo.jpeg',
+    image: '/odisha-ai_website/Featured_AI_Projects_in_Odisha/indian_logo.jpeg',
     details: 'AI-powered visitor authentication for government buildings',
     objective: 'To streamline and secure visitor entry to key government buildings (LokSeva Bhawan, Rajiv Bhawan, Kharavel Bhawan) using facial recognition technology, enhancing security while reducing wait times.',
     problem: 'Manual visitor registration was time-consuming, creating long queues and security bottlenecks. Lack of digital records made visitor tracking difficult, and verification processes were prone to human error.',
@@ -1349,7 +1349,7 @@ export const aiTrainingPrograms = [
     level: "Advanced",
     icon: "Zap",
     color: "yellow",
-     image: "/odisha-ai_website/Skilling_on_Artificial_Intelligence/Startup_Odisha.svg.png",
+    image: "/odisha-ai_website/Skilling_on_Artificial_Intelligence/Startup_Odisha.svg.png",
     highlights: ["Startup Focused", "Funding Support", "Industry Mentors"]
   }
 ];
@@ -1736,17 +1736,17 @@ export const heroSlides = [
   {
     id: 2,
     type: 'image',
-    imageUrl: '/odisha-ai_website/images/1.png',
+    imageUrl: '/odisha-ai_website/images/2.png',
     title: 'AI for Healthcare',
     subtitle: 'Transforming Medical Services with Intelligent Solutions',
     description: 'Deploying AI-powered disease prediction and screening across Odisha',
     logos: ['Govt of Odisha', 'OCAC'],
     event: '20 Lakh Screenings Target by 2036'
   },
-  { 
+  {
     id: 3,
     type: 'image',
-    imageUrl: '/odisha-ai_website/images/1.png',
+    imageUrl: '/odisha-ai_website/images/3.png',
     title: 'Smart Agriculture Revolution',
     subtitle: 'AI-Powered Precision Farming for Odisha Farmers',
     description: 'Empowering 15 lakh farmers with intelligent crop advisory and precision irrigation',
@@ -1756,7 +1756,7 @@ export const heroSlides = [
   {
     id: 4,
     type: 'image',
-    imageUrl: '/odisha-ai_website/images/1.png',
+    imageUrl: '/odisha-ai_website/images/4.png',
     title: 'AI Training for All',
     subtitle: 'Mandatory AI Training for Government Officers',
     description: 'Building Odisha\'s AI workforce - Training 18,000 citizens annually',
@@ -1776,7 +1776,7 @@ export const heroSlides = [
   {
     id: 6,
     type: 'image',
-    imageUrl: '/odisha-ai_website/images/1.png',
+    imageUrl: '/odisha-ai_website/images/11.png',
     title: 'AI Innovation Ecosystem',
     subtitle: 'Supporting AI Startups & Research',
     description: 'Building Centers of Excellence in AI for healthcare, agriculture, and sustainable cities',
